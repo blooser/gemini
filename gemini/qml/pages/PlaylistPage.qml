@@ -1,0 +1,43 @@
+import QtQuick 2.14
+
+import Qt.labs.platform 1.1
+
+import com.gemini.helper 0.1
+import com.gemini.enums 0.1
+import com.gemini.styles 0.1
+
+import "../components/pageheaders" as PageHeaders
+import "../components/playlist" as Playlist
+
+GPage {
+    id: root
+
+    header: PageHeaders.PlaylistPageHeader {
+        onNewPlaylist: objectController.openDialog(Enums.Dialog.NewPlaylistDialog, {}, function(playlistName){
+            dataController.insertData([playlistName], Enums.Data.Playlist)
+        })
+
+        onAddSongs: {
+            if (playlistView.allSongs || songModel.size === GeminiStyles.empty) {
+                objectController.openDialog(Enums.Dialog.FileOpenDialog, {"title": qsTr("Add new songs"),
+                                                                          "nameFilters": ["Music (*.mp3 *.wav)"],
+                                                                          "folder": StandardPaths.writableLocation(StandardPaths.MusicLocation)}, function(files) {
+                    dataController.insertData(Helper.toStringList(files), Enums.Data.Songs)
+                })
+            } else {
+                objectController.openDialog(Enums.Dialog.SongsDialog, {"headerText": qsTr("Add sngs to <b>%1</b> playlist").arg(sessionController.currentPlaylist.name) }, function(songs) {
+                    dataController.insertData(Helper.createRelation(sessionController.currentPlaylist.id, songs), Enums.Data.Relations)
+                })
+            }
+        }
+    }
+
+    Playlist.PlaylistView {
+        id: playlistView
+
+        anchors {
+            fill: parent
+            margins: GeminiStyles.tMargin
+        }
+    }
+}

@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/fonts">
+        <file alias="arbutus">fonts/ArbutusSlab-Regular.ttf</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file alias="images">svg/images.svg</file>
+        <file alias="music">svg/music.svg</file>
+        <file alias="playlist">svg/playlist.svg</file>
+        <file alias="next">svg/next.svg</file>
+        <file alias="pause">svg/pause.svg</file>
+        <file alias="play">svg/play.svg</file>
+        <file alias="previous">svg/previous.svg</file>
+        <file alias="loop">svg/loop.svg</file>
+        <file alias="random">svg/random.svg</file>
+        <file alias="sequental">svg/sequental.svg</file>
+        <file alias="delete">svg/delete.svg</file>
+        <file alias="volume">svg/volume.svg</file>
+        <file alias="check">svg/check.svg</file>
+        <file alias="plus">svg/plus.svg</file>
+        <file alias="change">svg/change.svg</file>
+        <file alias="gate">svg/gate.svg</file>
+        <file alias="expand">svg/expand.svg</file>
+        <file alias="mute">svg/mute.svg</file>
+        <file alias="image">svg/image.svg</file>
+        <file alias="arrowLeft">svg/arrow-left.svg</file>
+        <file alias="arrowRight">svg/arrow-right.svg</file>
+        <file alias="burn">svg/burn.svg</file>
+    </qresource>
+</RCC>
