@@ -33,7 +33,10 @@ bool isLocal(const QUrl &url) {
 }
 
 bool isRemote(const QUrl &url) {
-    return url.scheme() == QLatin1String("http");
+    const QString &scheme = url.scheme();
+
+    return scheme == QLatin1String("http")
+        or scheme == QLatin1String("https");
 }
 
 Path getPath(const QUrl &url) {
