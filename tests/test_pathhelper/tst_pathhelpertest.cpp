@@ -22,12 +22,12 @@ PathHelperTest::~PathHelperTest() {
 }
 
 void PathHelperTest::testPathHelperJoinValidPath() {
-    QString joinResult = PathHelper::join("/foo/bar", "tst1", "tst2", "tst3", "tst4", "tst5");
+    QString joinResult = paths::join("/foo/bar", "tst1", "tst2", "tst3", "tst4", "tst5");
     QCOMPARE(joinResult, QStringLiteral("/foo/bar/tst1/tst2/tst3/tst4/tst5"));
 
     QString joinBenchmark;
     QBENCHMARK {
-        joinBenchmark = PathHelper::join("/foo/bar", "tst1", "tst2", "tst3",
+        joinBenchmark = paths::join("/foo/bar", "tst1", "tst2", "tst3",
                                          "tst4", "tst5", "tst6", "tst7");
     }
     Q_UNUSED(joinBenchmark);

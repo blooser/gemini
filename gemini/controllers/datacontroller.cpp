@@ -1,6 +1,5 @@
 #include "datacontroller.h"
 
-#include "../helpers/pathhelper.h"
 #include "../common/utility.h"
 #include "../common/deleters.h"
 

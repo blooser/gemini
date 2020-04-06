@@ -38,10 +38,6 @@ set (DATABASE_FILES
     database/databasetables.h
 )
 
-set (HELPERS_FILES
-    helpers/pathhelper.h
-)
-
 set (PATHS_FILES
     paths/paths.h
     paths/paths.cpp
@@ -133,7 +129,6 @@ include_directories (
     ${CMAKE_CURRENT_SOURCE_DIR}/controllers
     ${CMAKE_CURRENT_SOURCE_DIR}/data
     ${CMAKE_CURRENT_SOURCE_DIR}/database
-    ${CMAKE_CURRENT_SOURCE_DIR}/helpers
     ${CMAKE_CURRENT_SOURCE_DIR}/paths
     ${CMAKE_CURRENT_SOURCE_DIR}/models
     ${CMAKE_CURRENT_SOURCE_DIR}/models/proxy
@@ -151,7 +146,7 @@ endif()
 include (FindLIBVLC)
 
 qtquick_compiler_add_resources (RESOURCES ${QRC_FILES})
-add_executable (gemini main.cpp ${COMMON_FILES} ${CONTROLLERS_FILES} ${DATA_FILES} ${DATABASE_FILES} ${HELPERS_FILES} ${PATHS_FILES} ${MODELS_FILES} ${PROCESSES_FILES} ${TOOLS_FILES} ${VLC_FILES} ${QRC_FILES})
+add_executable (gemini main.cpp ${COMMON_FILES} ${CONTROLLERS_FILES} ${DATA_FILES} ${DATABASE_FILES} ${PATHS_FILES} ${MODELS_FILES} ${PROCESSES_FILES} ${TOOLS_FILES} ${VLC_FILES} ${QRC_FILES})
 qt5_use_modules (gemini Core Gui Widgets Quick Qml Svg Sql)
 
 target_link_libraries(gemini ${LIBVLC_LIBRARY} ${LIBVLCCORE_LIBRARY})
