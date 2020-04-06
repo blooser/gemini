@@ -1,6 +1,6 @@
 #include "databasecontroller.h"
 #include "../database/databasetables.h"
-#include "../helpers/pathhelper.h"
+#include "../paths/paths.h"
 
 #include <QStandardPaths>
 #include <QFileInfo>
@@ -15,7 +15,7 @@ namespace {
 
 DatabaseController::DatabaseController(const QString &m_appPath, QObject *parent)
     : QObject(parent),
-      m_dbPath(PathHelper::join(m_appPath, DB_NAME)){
+      m_dbPath(paths::join(m_appPath, DB_NAME)){
 
     if (!databaseExists()) {
         qCInfo(databaseController) << "Creating database";

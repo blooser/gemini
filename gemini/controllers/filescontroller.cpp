@@ -1,5 +1,5 @@
 #include "filescontroller.h"
-#include "../helpers/pathhelper.h"
+#include "../paths/paths.h"
 
 #include <QStandardPaths>
 #include <QFile>
@@ -39,7 +39,7 @@ bool FilesController::fileExists(const QString &path) {
 
 void FilesController::createDirectories() {
     for (const auto &data : DATA.values()) {
-        const QString dataPath = PathHelper::join(m_corePath, data);
+        const QString dataPath = paths::join(m_corePath, data);
 
         if (!directoryExists(dataPath)) {
             qCInfo(filesController) << "Creating" << data << "directory";
@@ -51,7 +51,7 @@ void FilesController::createDirectories() {
 }
 
 QString FilesController::generateUrl(const QUrl &url, Enums::Data data) {
-    return PathHelper::join(m_corePath, DATA.value(data), url.fileName());
+    return paths::join(m_corePath, DATA.value(data), url.fileName());
 }
 
 QString FilesController::put(const QUrl &url, Enums::Data data) {

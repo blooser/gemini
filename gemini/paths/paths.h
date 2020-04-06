@@ -2,6 +2,7 @@
 #define PATHS_H
 
 #include <QStringList>
+#include <QString>
 #include <QUrl>
 
 namespace paths {
@@ -34,6 +35,11 @@ bool isLocal(const QUrl &url);
 bool isRemote(const QUrl &url);
 
 Path getPath(const QUrl &url);
+
+template <typename ...Paths>
+QString join(const QString &root, Paths ...paths) {
+    return (root + ... + (QStringLiteral("/") + QString(paths)));
+}
 
 }
 

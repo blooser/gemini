@@ -1,6 +1,6 @@
 #include "sessioncontroller.h"
 
-#include "../helpers/pathhelper.h"
+#include "../paths/paths.h"
 
 #include <QFileInfo>
 #include <QStandardPaths>
@@ -14,7 +14,7 @@ namespace  {
 
 SessionController::SessionController(QObject *parent)
     : QObject(parent),
-      m_sessionLocation(PathHelper::join(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation), SESSION_FILENAME)) {
+      m_sessionLocation(paths::join(QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation), SESSION_FILENAME)) {
 
     defaults();
 
@@ -27,7 +27,7 @@ SessionController::SessionController(QObject *parent)
 
 SessionController::SessionController(const QString &sessionLocation, QObject *parent)
     : QObject(parent),
-      m_sessionLocation(PathHelper::join(sessionLocation, SESSION_FILENAME)) {
+      m_sessionLocation(paths::join(sessionLocation, SESSION_FILENAME)) {
 
     defaults();
 

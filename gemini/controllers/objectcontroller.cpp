@@ -1,7 +1,7 @@
 #include "objectcontroller.h"
 
 #include "../common/utility.h"
-#include "../helpers/pathhelper.h"
+#include "../paths/paths.h"
 
 Q_LOGGING_CATEGORY(objectController, "object.controller")
 
@@ -22,5 +22,5 @@ void ObjectController::openDialog(Enums::Dialog popup, const QVariantMap &proper
 }
 
 QString ObjectController::path(Enums::Dialog popup) {
-    return PathHelper::join(DIALOG_PREFIX, Utility::enumToString(popup) + QML_SUFFIX);
+    return paths::join(DIALOG_PREFIX, Utility::enumToString(popup) + QML_SUFFIX);
 }
