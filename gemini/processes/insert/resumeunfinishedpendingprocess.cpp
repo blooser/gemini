@@ -1,8 +1,11 @@
 #include "resumeunfinishedpendingprocess.h"
 
+#include "../../paths/paths.h"
+
+#include "../remove/pendingremoveprocess.h"
+
 #include "songinsertprocess.h"
 #include "wallpaperinsertprocess.h"
-#include "../remove/pendingremoveprocess.h"
 
 #include <QFileInfo>
 
@@ -10,14 +13,6 @@ namespace  {
     constexpr Enums::Data PENDING = Enums::Data::Pending;
 
     QByteArray URL_ROLENAME = QByteArrayLiteral("url");
-
-    QStringList AUDIO_SUFFIXES {
-        "mp3", "wav" // TODO: Add more suffixes
-    };
-
-    QStringList IMAGE_SUFFIXES {
-        "png", "jpg", "jpeg" // TODO: Add more suffixes
-    };
 }
 
 ResumeUnfinishedPendingProcess::ResumeUnfinishedPendingProcess(const std::shared_ptr<ModelController> &modelController,
@@ -58,11 +53,11 @@ QVector<QUrl> ResumeUnfinishedPendingProcess::collectUrls() const {
 }
 
 std::shared_ptr<Process> ResumeUnfinishedPendingProcess::createInsertProcessByUrl(const QUrl &url) {
-    if (isAudio(url)) {
+    if (paths::isAudio(url)) {
         return std::shared_ptr<Process>(new SongInsertProcess(m_modelController, m_filesController, url));
     }
 
-    if (isImage(url)) {
+    if (paths::isImage(url)) {
         return std::shared_ptr<Process>(new WallpaperInsertProcess(m_modelController, m_filesController, url));
     }
 
@@ -78,24 +73,4 @@ QVector<std::shared_ptr<Process>> ResumeUnfinishedPendingProcess::createInsertPr
     }
 
     return processes;
-}
-
-bool ResumeUnfinishedPendingProcess::isAudio(const QUrl &url) {
-    for (const auto &suffix : AUDIO_SUFFIXES) {
-        if (QFileInfo(url.path()).suffix() == suffix) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-bool ResumeUnfinishedPendingProcess::isImage(const QUrl &url) {
-    for (const auto &suffix : IMAGE_SUFFIXES) {
-        if (QFileInfo(url.path()).suffix() == suffix) {
-            return true;
-        }
-    }
-
-    return false;
 }

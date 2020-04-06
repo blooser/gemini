@@ -2,6 +2,7 @@ find_package (Qt5 ${QT_MIN_VERSION} COMPONENTS Core Test Sql Qml REQUIRED)
 
 set (TEST_FILES
     ${PROJECT_SOURCE_DIR}/gemini/common/utility.h
+    ${PROJECT_SOURCE_DIR}/gemini/paths/paths.h
     ${PROJECT_SOURCE_DIR}/gemini/data/playlistdata.h 
     ${PROJECT_SOURCE_DIR}/gemini/database/databasecore.h 
     ${PROJECT_SOURCE_DIR}/gemini/database/databasetables.h 
@@ -33,6 +34,7 @@ set (TEST_FILES
     ${PROJECT_SOURCE_DIR}/gemini/processes/remove/wallpaperremoveprocess.h 
     ${PROJECT_SOURCE_DIR}/gemini/processes/remove/removemissingdataprocess.h
     ${PROJECT_SOURCE_DIR}/gemini/common/utility.cpp 
+    ${PROJECT_SOURCE_DIR}/gemini/paths/paths.cpp
     ${PROJECT_SOURCE_DIR}/gemini/database/databasecore.cpp 
     ${PROJECT_SOURCE_DIR}/gemini/controllers/datacontroller.cpp 
     ${PROJECT_SOURCE_DIR}/gemini/controllers/databasecontroller.cpp

@@ -25,9 +25,6 @@ private:
     QVector<std::shared_ptr<Process>> createInsertProcesses();
 
     void pendingFinished();
-
-    bool isAudio(const QUrl &url);
-    bool isImage(const QUrl &url);
 };
 
 #endif // RESUMEUNFINISHEDPENDINGPROCESS_H

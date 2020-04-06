@@ -61,7 +61,6 @@ void PathsTest::testPathsTellIsLocal() {
 
     QVERIFY(paths::isLocal(local));
     QVERIFY(not paths::isLocal(remote));
-
 }
 
 void PathsTest::testPathsTellIsRemote() {

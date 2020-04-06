@@ -27,7 +27,6 @@ const QStringList IMAGE_SUFFIXES {
     // TODO: Add more suffixes
 };
 
-
 bool isAudio(const QUrl &url);
 bool isImage(const QUrl &url);
 
