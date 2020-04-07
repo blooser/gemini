@@ -12,6 +12,7 @@ set (CMAKE_MODULE_PATH
 )
 
 option(ERASE_DATA "Erase whole saved data (It will erase on every application startup)" OFF)
+option(USE_STRINGBUILDER "Use fast concatenation" OFF)
 
 add_compile_definitions (
     ProjectName="${PROJECT_NAME}"

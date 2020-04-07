@@ -141,7 +141,11 @@ include_directories (
 
 if (ERASE_DATA)
     add_compile_definitions(ERASE_DATA)
-endif()
+endif ()
+
+if (USE_STRINGBUILDER)
+    add_compile_definitions(QT_USE_QSTRINGBUILDER)
+endif ()
 
 include (FindLIBVLC)
 
