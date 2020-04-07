@@ -11,7 +11,6 @@ set (TEST_FILES
 
 include (FindLIBVLC)
 
-#qt5_add_resources(${TEST_FILES} ${TESTING_RESOURCES})
 add_executable(tst_vlcmediatest tst_vlcmediatest.cpp ${TEST_FILES} ${TESTING_RESOURCES})
 qt5_use_modules(tst_vlcmediatest Core Test)
 target_link_libraries(tst_vlcmediatest ${LIBVLC_LIBRARY} ${LIBVLCCORE_LIBRARY})
