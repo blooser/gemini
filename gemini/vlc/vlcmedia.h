@@ -45,7 +45,7 @@ public:
     static void parse(const libvlc_event_t *event, void *data);
 
 signals:
-    void metaChanged();
+    void metaChanged(const vlc::Meta &meta);
 
 private:
     QUrl m_path;

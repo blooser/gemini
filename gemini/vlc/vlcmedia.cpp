@@ -7,6 +7,8 @@ Q_LOGGING_CATEGORY(vlcMedia, "vlc.media")
 using namespace vlc;
 
 namespace {
+    constexpr int PARSE_TIMEOUT = 100; // TODO: 100 is enough?
+
     QMap<paths::Path, libvlc_media_parse_flag_t> PARSE_PATH {
         { paths::Path::Local, libvlc_media_parse_flag_t::libvlc_media_parse_local },
         { paths::Path::Remote, libvlc_media_parse_flag_t::libvlc_media_parse_network }
@@ -34,10 +36,11 @@ VlcMedia &VlcMedia::operator=(const QUrl &url) {
         return *this;
     }
 
+    // TODO: check for memory issues on every repeat this operation
     auto event_manager = libvlc_media_event_manager(m_vlcMedia.get());
     libvlc_event_attach(event_manager, libvlc_MediaParsedChanged, parse, this);
 
-    libvlc_media_parse_with_options(m_vlcMedia.get(), PARSE_PATH[paths::getPath(url)], 100);
+    libvlc_media_parse_with_options(m_vlcMedia.get(), PARSE_PATH[paths::getPath(url)], PARSE_TIMEOUT);
 
     return *this;
 }
@@ -102,10 +105,10 @@ void VlcMedia::processParsed() {
 void VlcMedia::release() {
     m_vlcMedia.reset(nullptr);
     m_meta = Meta{};
-    emit metaChanged();
+    emit metaChanged(m_meta);
 }
 
 void VlcMedia::loadMeta() {
     m_meta = Meta::load(m_vlcMedia.get());
-    emit metaChanged();
+    emit metaChanged(m_meta);
 }
