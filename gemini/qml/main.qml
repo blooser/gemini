@@ -30,7 +30,7 @@ Window {
         interval: 10000
         running: (wallpaperModel.size > GeminiStyles.empty)
 
-        onPicked: sessionController.currentWallpaper = Helper.localFile(data)
+        onPicked: sessionController.currentWallpaper = data
     }
 
     Connections {

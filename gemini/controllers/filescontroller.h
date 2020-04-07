@@ -17,8 +17,8 @@ class FilesController : public QObject {
 public:
     explicit FilesController(const QString &corePath, QObject *parent = nullptr);
 
-    QString put(const QUrl &url, Enums::Data data);
-    QString generateUrl(const QUrl &url, Enums::Data data);
+    QUrl put(const QUrl &url, Enums::Data data);
+    QUrl generateUrl(const QUrl &url, Enums::Data data);
     void remove(const QUrl &url);
 
     QString path() const;

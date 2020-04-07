@@ -5,10 +5,6 @@ import com.gemini.enums 0.1
 import QtQuick 2.14
 
 QtObject {
-    function localFile(path) {
-        return "file://" + path
-    }
-
     function empty(item) {
         return (item.length === 0)
     }
@@ -16,7 +12,7 @@ QtObject {
     function toStringList(items) {
         var stringList = []
         for (const item of items) {
-            stringList.push(item.toString())
+            stringList.push(item)
         }
 
         return stringList

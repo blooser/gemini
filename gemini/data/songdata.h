@@ -6,19 +6,19 @@
 #include <QCoreApplication>
 #include <QObject>
 #include <QVector>
-#include <QString>
+#include <QUrl>
 
 namespace data {
 
 struct Song {
     Q_GADGET
     Q_PROPERTY(int id MEMBER m_id)
-    Q_PROPERTY(QString url MEMBER m_url)
+    Q_PROPERTY(QUrl url MEMBER m_url)
     Q_PROPERTY(data::Playlist playlist MEMBER m_playlist)
 
 public:
     int m_id;
-    QString m_url;
+    QUrl m_url;
     Playlist m_playlist;
 
     friend inline bool operator==(const Song &song1, const Song &song2) {

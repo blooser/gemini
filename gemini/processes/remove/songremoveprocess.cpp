@@ -28,7 +28,7 @@ QVariantMap SongRemoveProcess::relationsModelData(const QVariant &data) const {
 
 void SongRemoveProcess::start() {
     if (not inputData().toMap().isEmpty()) {
-        m_filesController->remove(inputData().toMap().value("url").toUrl().path());
+        m_filesController->remove(inputData().toMap().value("url").toUrl());
         m_modelController->removeData(modelData(inputData()), SONGS);
         m_modelController->removeData(relationsModelData(inputData()), RELATIONS);
     }

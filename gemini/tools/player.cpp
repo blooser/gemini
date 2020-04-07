@@ -41,7 +41,7 @@ void Player::onSourceChanged() {
         return;
     }
 
-    m_vlcMedia = QUrl::fromLocalFile(m_source.path());
+    m_vlcMedia = m_source;
     m_vlcPlayer.setMedia(m_vlcMedia);
 
     play();

@@ -6,7 +6,7 @@
 #define INVALID_PLAYLIST \
     data::Playlist {-1, ""}
 #define INVALID_SONG \
-    data::Song {-1, "", INVALID_PLAYLIST}
+    data::Song {-1, QUrl(), INVALID_PLAYLIST}
 
 Q_LOGGING_CATEGORY(playlistTool, "playlist")
 
@@ -107,14 +107,13 @@ void Playlist::setPlaylist(const int row) {
 void Playlist::setCurrentSong(const int row) {
     if (row == INVALID or m_playlist == INVALID_PLAYLIST) {
         m_currentSong = INVALID_SONG;
-        qDebug() << m_currentSong.m_id << m_currentSong.m_url;
         emit currentSongChanged(m_currentSong);
         return;
     }
 
     m_currentSong = data::Song {
         getSongData(row, "id").toInt(),
-        getSongData(row, "url").toString(),
+        getSongData(row, "url").toUrl(),
         m_playlist
     };
 

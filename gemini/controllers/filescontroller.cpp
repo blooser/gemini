@@ -50,22 +50,22 @@ void FilesController::createDirectories() {
     }
 }
 
-QString FilesController::generateUrl(const QUrl &url, Enums::Data data) {
-    return paths::join(m_corePath, DATA.value(data), url.fileName());
+QUrl FilesController::generateUrl(const QUrl &url, Enums::Data data) {
+    return QUrl::fromLocalFile(paths::join(m_corePath, DATA.value(data), url.fileName()));
 }
 
-QString FilesController::put(const QUrl &url, Enums::Data data) {
+QUrl FilesController::put(const QUrl &url, Enums::Data data) {
     if (not url.isValid()) {
         qCWarning(filesController) << "Invalid url: " << url;
         return QString();
     }
 
-    const QString newFileUrl = generateUrl(url, data);
-    if (fileExists(newFileUrl)) {
+    const QUrl newFileUrl = generateUrl(url, data);
+    if (fileExists(newFileUrl.path())) {
         return newFileUrl;
     }
 
-    return QFile::copy(url.path(), newFileUrl) ? newFileUrl : QString();
+    return QFile::copy(url.path(), newFileUrl.path()) ? newFileUrl : QString();
 }
 
 void FilesController::remove(const QUrl &url) {

@@ -52,9 +52,9 @@ Rectangle {
                     }
                 }
 
-                source: Helper.localFile(url)
+                source: url
 
-                onExpand: objectController.openDialog(Enums.Dialog.WallpaperDialog, {"source": Helper.localFile(url)}, null)
+                onExpand: objectController.openDialog(Enums.Dialog.WallpaperDialog, {"source": url}, null)
                 onRemove: objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": qsTr("Are you sure you want to delete the wallpaper?")}, function(){
                     dataController.removeData([{"id": id, "url": url}], Enums.Data.Wallpapers)
                 })

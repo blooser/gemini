@@ -18,7 +18,7 @@ SongInsertProcess::SongInsertProcess(const std::shared_ptr<ModelController> &mod
 QVariantMap SongInsertProcess::modelData(const QVariant &data) const {
     return {
         { "name", data.toUrl().fileName() },
-        { "url", data.toUrl().path() }
+        { "url", data.toUrl() }
     };
 }
 

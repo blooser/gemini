@@ -13,13 +13,13 @@ PendableProcess::PendableProcess(const QVariant &inputData, const std::shared_pt
 
 QVariantMap PendableProcess::pendingModelData() const {
     return {
-        { "url", inputData().toUrl().path() }
+        { "url", inputData().toUrl() }
     };
 }
 
 QVariantMap PendableProcess::pendingFinishedModelData() const {
     return {
-        { "url", inputData().toUrl().path() },
+        { "url", inputData().toUrl() },
         { "done", DONE }
     };
 }

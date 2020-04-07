@@ -535,12 +535,12 @@ void ProcessesTest::testRemoveMissingDataRemovesMissingData() {
     QVector<QVariantMap> wallpaperData {
         {
             {"name", "wallpaper1"},
-            {"url", "/foo/path/wallpaper1.jpeg"}
+            {"url", "file:///foo/path/wallpaper1.jpeg"}
         },
 
         {
             {"name", "wallpaper2"},
-            {"url", "/foo/path/wallpaper2.jpeg"}
+            {"url", "file:///foo/path/wallpaper2.jpeg"}
         }
     };
 
@@ -560,12 +560,12 @@ void ProcessesTest::testRemoveMissingDataRemovesMissingData() {
     QVector<QVariantMap> songData {
         {
             {"name", "song1"},
-            {"url", "/foo/path/song1.mp3"}
+            {"url", "file:///foo/path/song1.mp3"}
         },
 
         {
             {"name", "song2"},
-            {"url", "/foo/path/song2.mp3"}
+            {"url", "file:///foo/path/song2.mp3"}
         }
     };
 

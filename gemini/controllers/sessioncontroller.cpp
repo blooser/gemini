@@ -62,7 +62,7 @@ void SessionController::defaults() {
     m_pending = false;
     m_playback = Playlist::Sequental;
     m_currentPlaylist = {-1, ""};
-    m_currentSong = {-1, "", {-1, ""}};
+    m_currentSong = {-1, QUrl(), {-1, ""}};
     m_currentWallpaper = QUrl();
     m_audioVolume = 50;
     m_unfinishedPending = false;

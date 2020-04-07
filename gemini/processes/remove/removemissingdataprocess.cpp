@@ -16,7 +16,7 @@ RemoveMissingDataProcess::RemoveMissingDataProcess(const std::shared_ptr<ModelCo
 
 QVariantMap RemoveMissingDataProcess::modelData(const QVariant &data) const {
     return {
-        { "url", data.toUrl().path() }
+        { "url", data.toUrl() }
     };
 }
 
@@ -36,7 +36,8 @@ void RemoveMissingDataProcess::start() {
     for (const auto &data :  m_modelController->readData(URL_ROLENAME, data)) {
         url = data.toUrl();
 
-        if (not QFileInfo(url.path()).exists()) {
+        // TODO: How about remote urls?
+        if (url.isLocalFile() and not QFileInfo(url.path()).exists()) {
             missingData.append(url);
         }
     }

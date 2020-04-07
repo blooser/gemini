@@ -20,17 +20,17 @@ private slots:
     void testFilesControllerPutsFilesIntoValidPathAndRemovesFile();
 
 private:
-    const QString path;
-    const QString testFilePath;
-    const QString expectedNewUrl;
+    const QUrl path;
+    const QUrl testFilePath;
+    const QUrl expectedNewUrl;
     FilesController filesController;
 };
 
 FileControllerTest::FileControllerTest()
-    : path(QDir::currentPath()),
-      testFilePath(path + "/test_file.jpeg"),
-      expectedNewUrl(path + "/wallpapers/test_file.jpeg"),
-      filesController(path) {
+    : path(QUrl::fromLocalFile(QDir::currentPath())),
+      testFilePath(QUrl::fromLocalFile(path.path() + "/test_file.jpeg")),
+      expectedNewUrl(QUrl::fromLocalFile(path.path() + "/wallpapers/test_file.jpeg")),
+      filesController(path.path()) {
 
 }
 
@@ -39,30 +39,30 @@ FileControllerTest::~FileControllerTest() {
 }
 
 void FileControllerTest::initTestCase() {
-    QDir dirChecker(path);
+    QDir dirChecker(path.path());
     auto dirs = dirChecker.entryList(QDir::Dirs);
     QVERIFY(dirs.contains("wallpapers"));
     QVERIFY(dirs.contains("songs"));
 
-    QFile file(testFilePath);
+    QFile file(testFilePath.path());
     QVERIFY(file.open(QIODevice::WriteOnly));
     file.write(QByteArray("010101010110101"));
     file.close();
 }
 
 void FileControllerTest::cleanupTestCase() {
-    QVERIFY(QFile::remove(testFilePath));
+    QVERIFY(QFile::remove(testFilePath.path()));
     QDir remover;
     remover.setFilter(QDir::Dirs);
     for (const auto &subdir : filesController.subdirectories()) {
-        remover.setPath(path + "/" + subdir);
+        remover.setPath(path.path() + "/" + subdir);
         QVERIFY(remover.removeRecursively());
     }
 }
 
 void FileControllerTest::testFilesControllerGeneratesValidUrl() {
-    const QString tempUrl = QString("/foo/bar/test/song.mp3");
-    const QString expectedUrl = QString(path + "/songs/song.mp3");
+    const QUrl tempUrl = QUrl::fromLocalFile("/foo/bar/test/song.mp3");
+    const QUrl expectedUrl = QUrl::fromLocalFile(path.path() + "/songs/song.mp3");
     auto generatedUrl = filesController.generateUrl(tempUrl, Enums::Data::Songs);
     QCOMPARE(generatedUrl, expectedUrl);
 }
@@ -71,10 +71,10 @@ void FileControllerTest::testFilesControllerPutsFilesIntoValidPathAndRemovesFile
     auto newUrl = filesController.put(testFilePath, Enums::Data::Wallpapers);
     QVERIFY(!newUrl.isEmpty());
     QCOMPARE(newUrl, expectedNewUrl);
-    QVERIFY(QFileInfo(newUrl).exists());
+    QVERIFY(QFileInfo(newUrl.path()).exists());
 
     filesController.remove(expectedNewUrl);
-    QVERIFY(!QFileInfo(expectedNewUrl).exists());
+    QVERIFY(!QFileInfo(expectedNewUrl.path()).exists());
 }
 
 QTEST_APPLESS_MAIN(FileControllerTest)

@@ -13,7 +13,7 @@ PendingInsertProcess::PendingInsertProcess(const std::shared_ptr<ModelController
 
 QVariantMap PendingInsertProcess::modelData(const QVariant &data) const {
     return {
-        { "url", data.toUrl().path() },
+        { "url", data.toUrl() },
         { "done", 0 }
     };
 }
