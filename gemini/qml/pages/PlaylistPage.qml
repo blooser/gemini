@@ -22,7 +22,7 @@ GPage {
                 objectController.openDialog(Enums.Dialog.FileOpenDialog, {"title": qsTr("Add new songs"),
                                                                           "nameFilters": ["Music (*.mp3 *.wav)"],
                                                                           "folder": StandardPaths.writableLocation(StandardPaths.MusicLocation)}, function(files) {
-                    dataController.insertData(Helper.toStringList(files), Enums.Data.Songs)
+                    dataController.insertData(Helper.toList(files), Enums.Data.Songs)
                 })
             } else {
                 objectController.openDialog(Enums.Dialog.SongsDialog, {"headerText": qsTr("Add sngs to <b>%1</b> playlist").arg(sessionController.currentPlaylist.name) }, function(songs) {

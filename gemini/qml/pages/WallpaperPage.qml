@@ -16,7 +16,7 @@ GPage {
         onAddWallpapers: objectController.openDialog(Enums.Dialog.FileOpenDialog, {"title": qsTr("Add new wallpapers"),
                                                                                    "nameFilters": ["Images (*.png *.jpg *.jpeg)"],
                                                                                    "folder": StandardPaths.writableLocation(StandardPaths.PicturesLocation)}, function(files){
-            dataController.insertData(Helper.toStringList(files), Enums.Data.Wallpapers)
+            dataController.insertData(Helper.toList(files), Enums.Data.Wallpapers)
         })
     }
 

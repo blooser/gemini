@@ -9,7 +9,7 @@ QtObject {
         return (item.length === 0)
     }
 
-    function toStringList(items) {
+    function toList(items) {
         var stringList = []
         for (const item of items) {
             stringList.push(item)
