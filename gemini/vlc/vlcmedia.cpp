@@ -18,18 +18,18 @@ VlcMedia::VlcMedia(libvlc_instance_t *vlcInstance, QObject *parent)
       m_vlcInstance(vlcInstance),
       m_vlcMedia(nullptr) {
 
-
-}
-
-QString VlcMedia::mrl() const {
-    return libvlc_media_get_mrl(m_vlcMedia.get());
 }
 
 VlcMedia &VlcMedia::operator=(const QUrl &url) {
-    qDebug() << url.toString().toUtf8().constData();
-    m_vlcMedia.reset(libvlc_media_new_location(m_vlcInstance, url.toString().toUtf8().constData()));
+    if (not m_vlcInstance) {
+        qCWarning(vlcMedia) << "There is no VLC instance!";
+        return *this;
+    }
 
-    if (!m_vlcMedia) {
+    m_path = url;
+    m_vlcMedia.reset(libvlc_media_new_location(m_vlcInstance, m_path.toString().toUtf8().constData()));
+
+    if (not m_vlcMedia) {
         qCWarning(vlcMedia) << "Creating new media failed!";
         return *this;
     }
@@ -37,7 +37,7 @@ VlcMedia &VlcMedia::operator=(const QUrl &url) {
     auto event_manager = libvlc_media_event_manager(m_vlcMedia.get());
     libvlc_event_attach(event_manager, libvlc_MediaParsedChanged, parse, this);
 
-    libvlc_media_parse_with_options(m_vlcMedia.get(), PARSE_PATH[paths::getPath(url)], -1);
+    libvlc_media_parse_with_options(m_vlcMedia.get(), PARSE_PATH[paths::getPath(url)], 100);
 
     return *this;
 }
@@ -46,12 +46,32 @@ libvlc_media_type_t VlcMedia::mediaType() const {
     return libvlc_media_get_type(m_vlcMedia.get());
 }
 
+QUrl VlcMedia::path() const {
+    return m_path;
+}
+
+QString VlcMedia::mrl() const {
+    return libvlc_media_get_mrl(m_vlcMedia.get());
+}
+
 libvlc_media_t *VlcMedia::media() const {
     return m_vlcMedia.get();
 }
 
 bool VlcMedia::isParsed() const {
-    return (libvlc_media_get_parsed_status(m_vlcMedia.get()) == libvlc_media_parsed_status_done);
+    return (m_parsedStatus == libvlc_media_parsed_status_done);
+}
+
+bool VlcMedia::isParsedError() const {
+    return (m_parsedStatus == libvlc_media_parsed_status_failed);
+}
+
+libvlc_media_parsed_status_t VlcMedia::parsedStatus() const {
+    return m_parsedStatus;
+}
+
+int VlcMedia::duration() const {
+    return libvlc_media_get_duration(m_vlcMedia.get());
 }
 
 Meta VlcMedia::meta() const {
@@ -61,8 +81,21 @@ Meta VlcMedia::meta() const {
 void VlcMedia::parse(const libvlc_event_t *event, void *data) {
     if (event->type == libvlc_MediaParsedChanged) {
         if (auto vlcMedia = static_cast<VlcMedia*>(data)) {
-            vlcMedia->loadMeta();
+            vlcMedia->processParsed();
         }
+    }
+}
+
+void VlcMedia::processParsed() {
+    m_parsedStatus = libvlc_media_get_parsed_status(m_vlcMedia.get());
+
+    if (isParsed()) {
+        loadMeta();
+        return;
+    }
+
+    if (isParsedError()) {
+        qCWarning(vlcMedia) << "Failed to parse path:" << m_path;
     }
 }
 

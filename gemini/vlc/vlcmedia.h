@@ -27,11 +27,18 @@ public:
 
     void loadMeta();
     void release();
+    void processParsed();
 
+    int duration() const;
     Meta meta() const;
+
     bool isParsed() const;
+    bool isParsedError() const;
+
+    QUrl path() const;
     QString mrl() const;
 
+    libvlc_media_parsed_status_t parsedStatus() const;
     libvlc_media_type_t mediaType() const;
     libvlc_media_t *media() const;
 
@@ -43,6 +50,7 @@ signals:
 private:
     QUrl m_path;
 
+    libvlc_media_parsed_status_t m_parsedStatus;
     libvlc_instance_t *m_vlcInstance;
     std::unique_ptr<libvlc_media_t, VlcMediaDeleter> m_vlcMedia;
 

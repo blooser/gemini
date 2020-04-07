@@ -5,6 +5,8 @@
 #include <QFile>
 
 #include <vlc/vlc.h>
+
+// These comes from gemini
 #include <vlc/vlcmedia.h>
 #include <vlc/vlcmeta.h>
 
@@ -20,13 +22,11 @@ private slots:
     void initTestCase();
     void cleanupTestCase();
 
-    void test_vlcParseLocal();
-    void test_vlcParseRemote();
+    void test_vlcParseFile();
 
 private:
     QUrl m_song;
     libvlc_instance_t *m_instance;
-
 };
 
 VlcMediaTest::VlcMediaTest()
@@ -41,40 +41,37 @@ VlcMediaTest::~VlcMediaTest()
 }
 
 void VlcMediaTest::initTestCase() {
+    QFile songFile(":/song");
+    QVERIFY(songFile.open(QIODevice::ReadOnly));
+
     QFile file(m_song.path());
     QVERIFY(file.open(QIODevice::WriteOnly));
-    QVERIFY(file.write(":/song"));
+    QVERIFY(file.write(songFile.readAll()));
+    songFile.close();
+    file.close();
+    QVERIFY(QFileInfo(m_song.path()).exists());
 }
 
 void VlcMediaTest::cleanupTestCase() {
     QVERIFY(QFile::remove(m_song.path()));
 }
 
-void VlcMediaTest::test_vlcParseLocal() {
+void VlcMediaTest::test_vlcParseFile() {
     vlc::VlcMedia vlcMedia(m_instance);
     vlcMedia = m_song;
 
     QSignalSpy spy(&vlcMedia, &vlc::VlcMedia::metaChanged);
 
-    QTest::qWait(100);
+    QTest::qWait(150);
 
-    QVERIFY(vlcMedia.mediaType() == libvlc_media_type_t::libvlc_media_type_file);
     QCOMPARE(spy.count(), 1);
-    QCOMPARE(vlcMedia.meta().m_title, "song.mp3");
-}
-
-void VlcMediaTest::test_vlcParseRemote() {
-    vlc::VlcMedia vlcMedia(m_instance);
-    vlcMedia = QUrl("https://www.youtube.com/watch?v=QKUNo8MOzQA");
-
-    QSignalSpy spy(&vlcMedia, &vlc::VlcMedia::metaChanged);
-
-    QTest::qWait(1000);
-
     QVERIFY(vlcMedia.isParsed());
-    QVERIFY(vlcMedia.mediaType() == libvlc_media_type_t::libvlc_media_type_stream);
-    QCOMPARE(spy.count(), 1);
-    QCOMPARE(vlcMedia.meta().m_title, "Relaxing Sleep Music + Stress Relief - Relaxing Music, Insomnia, Meditation Music");
+    QCOMPARE(vlcMedia.duration(), 261941);
+    // These values are in meta info of song.mp3 (check testingresources directory)
+    QCOMPARE(vlcMedia.meta().m_title, "TestSong");
+    QCOMPARE(vlcMedia.meta().m_artist, "Test");
+    QCOMPARE(vlcMedia.meta().m_album, "testing");
+    QCOMPARE(vlcMedia.meta().m_genre, "Dream");
 }
 
 QTEST_APPLESS_MAIN(VlcMediaTest)
