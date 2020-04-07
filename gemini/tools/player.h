@@ -94,8 +94,8 @@ private:
     QUrl m_source;
     Status m_status;
 
-    vlc::VlcMedia m_vlcMedia;
     vlc::VlcPlayer m_vlcPlayer;
+    vlc::VlcMedia m_vlcMedia;
 
     void setupConnections();
 };

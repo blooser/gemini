@@ -6,7 +6,8 @@ using namespace vlc;
 
 Player::Player(QObject *parent)
     : QObject(parent),
-      m_status(Status::Stopped) {
+      m_status(Status::Stopped),
+      m_vlcMedia(m_vlcPlayer.instance()) {
 
     setupConnections();
 }
@@ -40,7 +41,7 @@ void Player::onSourceChanged() {
         return;
     }
 
-    m_vlcMedia = libvlc_media_new_path(m_vlcPlayer.instance(), RAW_DATA(m_source.path()));
+    m_vlcMedia = m_source;
     m_vlcPlayer.setMedia(m_vlcMedia);
 
     play();
