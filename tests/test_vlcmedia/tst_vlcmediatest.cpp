@@ -66,8 +66,8 @@ void VlcMediaTest::test_vlcParseFile() {
 
     QCOMPARE(spy.count(), 1);
     QVERIFY(vlcMedia.isParsed());
+    // These values are in meta info of song.mp3 (check testingresources/song.mp3)
     QCOMPARE(vlcMedia.duration(), 261941);
-    // These values are in meta info of song.mp3 (check testingresources directory)
     QCOMPARE(vlcMedia.meta().m_title, "TestSong");
     QCOMPARE(vlcMedia.meta().m_artist, "Test");
     QCOMPARE(vlcMedia.meta().m_album, "testing");
