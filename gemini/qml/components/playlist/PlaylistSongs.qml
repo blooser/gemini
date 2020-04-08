@@ -34,7 +34,8 @@ Item {
                 width: songs.width
                 playing: (!root.allSongs && id === sessionController.currentSong.id && sessionController.currentSong.playlist.id === sessionController.currentPlaylist.id)
 
-                text: title
+                songTitle: title
+                songDuration: duration
 
                 onRemove: {
                     const message = allSongs ? qsTr("Are you sure you want to delete <b>%1</b> song?").arg(title)

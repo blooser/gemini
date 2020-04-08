@@ -8,6 +8,7 @@ Rectangle {
     id: root
 
     property alias text: textItem.text
+    property alias font: textItem.font
 
     implicitWidth: textItem.implicitWidth
     implicitHeight: textItem.implicitHeight

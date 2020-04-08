@@ -4,11 +4,13 @@ import QtQuick.Layouts 1.12
 import com.gemini.styles 0.1
 
 import "../../items" as Items
+import ".." as Components
 
 Rectangle {
     id: root
 
-    property alias text: textItem.text
+    property alias songTitle: title.text
+    property alias songDuration: duration.text
     property bool playing: false
 
     signal remove()
@@ -24,7 +26,7 @@ Rectangle {
         anchors.fill: parent
 
         Items.GText {
-            id: textItem
+            id: title
 
             Layout.fillWidth: true
 
@@ -32,6 +34,16 @@ Rectangle {
             font.bold: root.playing
             horizontalAlignment: Text.AlignLeft
             padding: GeminiStyles.tMargin
+        }
+
+        Components.TileText {
+            id: duration
+
+            Layout.alignment: Qt.AlignCenter
+
+            font.pixelSize: GeminiStyles.tFontPixelSize
+
+            color: GeminiStyles.geminiSecondColor
         }
 
         Items.GImageButton {
