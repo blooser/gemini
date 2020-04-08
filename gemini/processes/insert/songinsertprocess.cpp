@@ -1,9 +1,6 @@
 #include "songinsertprocess.h"
 
-#include <taglib/tag.h>
-#include <taglib/fileref.h>
-#include <taglib/tpropertymap.h>
-
+#include "../../audio/audiofile.h"
 #include "../../common/enums.h"
 
 namespace {
@@ -20,22 +17,16 @@ SongInsertProcess::SongInsertProcess(const std::shared_ptr<ModelController> &mod
 }
 
 QVariantMap SongInsertProcess::modelData(const QVariant &data) const {
-    TagLib::FileRef file(data.toUrl().path().toUtf8());
-    auto tag = file.tag();
-    auto audio = file.audioProperties();
-
-    if (not audio) {
-        return {};
-    }
+    AudioFile audioFile(data.toUrl());
 
     return {
-        { "title", tag->title().toCString() },
-        { "artist", tag->artist().toCString() },
-        { "date", tag->year() },
-        { "album", tag->album().toCString() },
-        { "genre", tag->genre().toCString() },
-        { "duration", audio->length() },
-        { "url", data.toUrl() }
+        { "title", audioFile.title() },
+        { "artist", audioFile.artist() },
+        { "date", audioFile.year() },
+        { "album", audioFile.album() },
+        { "genre", audioFile.genre() },
+        { "duration", audioFile.duration() },
+        { "url", audioFile.url() }
     };
 }
 

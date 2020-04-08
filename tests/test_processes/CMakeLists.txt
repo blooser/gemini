@@ -55,6 +55,8 @@ set (TEST_FILES
     ${PROJECT_SOURCE_DIR}/gemini/processes/remove/songremoveprocess.cpp
     ${PROJECT_SOURCE_DIR}/gemini/processes/remove/wallpaperremoveprocess.cpp 
     ${PROJECT_SOURCE_DIR}/gemini/processes/remove/removemissingdataprocess.cpp 
+    ${PROJECT_SOURCE_DIR}/gemini/audio/audiofile.h
+    ${PROJECT_SOURCE_DIR}/gemini/audio/audiofile.cpp
 )
 
 include (FindLIBTAG)
