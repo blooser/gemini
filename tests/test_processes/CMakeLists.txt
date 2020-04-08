@@ -57,6 +57,11 @@ set (TEST_FILES
     ${PROJECT_SOURCE_DIR}/gemini/processes/remove/removemissingdataprocess.cpp 
 )
 
-add_executable (tst_processestest tst_processestest.cpp ${TEST_FILES})
+include (FindLIBTAG)
+
+add_executable (tst_processestest tst_processestest.cpp ${TEST_FILES} ${TESTING_RESOURCES})
 qt5_use_modules (tst_processestest Core Quick Qml QuickTest Sql)
 add_test (NAME ProcessesTest COMMAND tst_processestest)
+
+target_link_libraries(tst_processestest ${TAGLIB_LIBRARIES})
+

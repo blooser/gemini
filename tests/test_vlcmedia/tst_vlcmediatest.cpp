@@ -62,7 +62,7 @@ void VlcMediaTest::test_vlcParseFile() {
 
     QSignalSpy spy(&vlcMedia, &vlc::VlcMedia::metaChanged);
 
-    QTest::qWait(150);
+    QTest::qWait(250);
 
     QCOMPARE(spy.count(), 1);
     QVERIFY(vlcMedia.isParsed());

@@ -53,6 +53,7 @@ private slots:
     void testRelationProcessHandlesInsertInvalidData();
     void testRelationProcessHandlesRemoveInvalidData();
     void testSongProcessInsertAndRemoveDataFromSongAndRelationModel();
+    void testSongProcessInsertSongWithParsedMeta();
     void testSongProcessHandlesInsertInvalidData();
     void testSongProcessHandlesRemoveInvalidData();
     void testWallpaperProcessInsertAndRemoveData();
@@ -63,10 +64,10 @@ private slots:
 
 private:
     const QString path;
-    const QString tmpSong;
-    const QString tmpWallpaper;
-    const QString expectedSong;
-    const QString expectedWallpaper;
+    const QUrl tmpSong;
+    const QUrl tmpWallpaper;
+    const QUrl expectedSong;
+    const QUrl expectedWallpaper;
     QSqlDatabase db;
     std::shared_ptr<ModelController> modelController;
     std::shared_ptr<FilesController> filesController;
@@ -74,10 +75,10 @@ private:
 
 ProcessesTest::ProcessesTest()
     : path(QDir::currentPath()),
-      tmpSong(path + "/files/song.mp3"),
-      tmpWallpaper(path + "/files/wallpaper.jpeg"),
-      expectedSong(path + "/songs/song.mp3"),
-      expectedWallpaper(path + "/wallpapers/wallpaper.jpeg") {
+      tmpSong(QUrl::fromLocalFile(path + "/files/song.mp3")),
+      tmpWallpaper(QUrl::fromLocalFile(path + "/files/wallpaper.jpeg")),
+      expectedSong(QUrl::fromLocalFile(path + "/songs/song.mp3")),
+      expectedWallpaper(QUrl::fromLocalFile(path + "/wallpapers/wallpaper.jpeg")) {
 }
 
 ProcessesTest::~ProcessesTest() {
@@ -88,13 +89,17 @@ void ProcessesTest::initTestCase() {
     database::core::setup(db, "", ":memory:");
     QVERIFY(db.isValid());
 
-    QVERIFY(QFileInfo(tmpSong).dir().mkpath("."));
-    QFile file(tmpSong);
-    QVERIFY(file.open(QIODevice::WriteOnly));
-    file.write("01010101010");
-    file.close();
+    QFile songFile(":/song");
+    QVERIFY(songFile.open(QIODevice::ReadOnly));
 
-    file.setFileName(tmpWallpaper);
+    QVERIFY(QFileInfo(tmpSong.path()).dir().mkpath("."));
+    QFile file(tmpSong.path());
+    QVERIFY(file.open(QIODevice::WriteOnly));
+    file.write(songFile.readAll());
+    file.close();
+    songFile.close();
+
+    file.setFileName(tmpWallpaper.path());
     QVERIFY(file.open(QIODevice::WriteOnly));
     file.write("01010101001");
     file.close();
@@ -133,20 +138,20 @@ void ProcessesTest::init() {
     filesController.reset(new FilesController(path));
     QVERIFY(filesController);
 
-    QVERIFY(QFileInfo(tmpSong).exists());
-    QVERIFY(QFileInfo(tmpSong).exists());
+    QVERIFY(QFileInfo(tmpSong.path()).exists());
+    QVERIFY(QFileInfo(tmpSong.path()).exists());
 }
 
 void ProcessesTest::cleanup() {
     db.close();
     QVERIFY(!db.isOpen());
 
-    if (QFileInfo(expectedSong).exists()) {
-        QVERIFY(QFile::remove(expectedSong));
+    if (QFileInfo(expectedSong.path()).exists()) {
+        QVERIFY(QFile::remove(expectedSong.path()));
     }
 
-    if (QFileInfo(expectedWallpaper).exists()) {
-        QVERIFY(QFile::remove(expectedWallpaper));
+    if (QFileInfo(expectedWallpaper.path()).exists()) {
+        QVERIFY(QFile::remove(expectedWallpaper.path()));
     }
 }
 
@@ -362,7 +367,7 @@ void ProcessesTest::testRelationProcessInsertAndRemoveDataWithFiles() {
 
     QCOMPARE(relationModel.rowCount(), 1);
     QCOMPARE(songModel.rowCount(), 1);
-    QVERIFY(QFileInfo(expectedSong).exists());
+    QVERIFY(QFileInfo(expectedSong.path()).exists());
 
     data = {
         { "playlist", 1  },
@@ -375,7 +380,7 @@ void ProcessesTest::testRelationProcessInsertAndRemoveDataWithFiles() {
     relationModel.select();
 
     QCOMPARE(relationModel.rowCount(), 0);
-    QVERIFY(QFile::remove(expectedSong));
+    QVERIFY(QFile::remove(expectedSong.path()));
 }
 
 void ProcessesTest::testSongProcessInsertAndRemoveDataFromSongAndRelationModel() {
@@ -384,7 +389,7 @@ void ProcessesTest::testSongProcessInsertAndRemoveDataFromSongAndRelationModel()
 
     SongModel songModel(db);
     QCOMPARE(songModel.rowCount(), 1);
-    QVERIFY(QFileInfo(expectedSong).exists());
+    QVERIFY(QFileInfo(expectedSong.path()).exists());
 
     QVariantMap relationModelData {
         { "playlist", 1 },
@@ -410,7 +415,31 @@ void ProcessesTest::testSongProcessInsertAndRemoveDataFromSongAndRelationModel()
 
     QCOMPARE(songModel.rowCount(), 0);
     QCOMPARE(relationModel.rowCount(), 0);
-    QVERIFY(!QFileInfo(expectedSong).exists());
+    QVERIFY(!QFileInfo(expectedSong.path()).exists());
+}
+
+void ProcessesTest::testSongProcessInsertSongWithParsedMeta() {
+    std::unique_ptr<SongInsertProcess> songInsert(new SongInsertProcess(modelController, filesController, tmpSong));
+    songInsert->start();
+
+    SongModel songModel(db);
+    QCOMPARE(songModel.rowCount(), 1);
+
+    // These values are in meta info of song.mp3 (check testresources/song.mp3)
+    QVector<QPair<QByteArray, QVariant>> expectedValues = {
+        { "title", "TestSong" },
+        { "duration", 261 },
+        { "artist", "Test" },
+        { "date", "2006" },
+        { "album", "testing" },
+        { "genre", "Dream" },
+        { "url", expectedSong },
+    };
+
+    auto index = songModel.index(0, 0);
+    for (const auto value : qAsConst(expectedValues)) {
+        QCOMPARE(songModel.data(index, songModel.roleNames().key(value.first)), value.second);
+    }
 }
 
 void ProcessesTest::testSongProcessHandlesInsertInvalidData() {
@@ -451,7 +480,7 @@ void ProcessesTest::testWallpaperProcessInsertAndRemoveData() {
 
     WallpaperModel wallpaperModel(db);
     QCOMPARE(wallpaperModel.rowCount(), 1);
-    QVERIFY(QFileInfo(expectedWallpaper).exists());
+    QVERIFY(QFileInfo(expectedWallpaper.path()).exists());
 
     constexpr int expectedId = 1;
     QVariantMap wallpaperRemoveModelData {
@@ -464,7 +493,7 @@ void ProcessesTest::testWallpaperProcessInsertAndRemoveData() {
     wallpaperModel.select();
 
     QCOMPARE(wallpaperModel.rowCount(), 0);
-    QVERIFY(!QFileInfo(expectedWallpaper).exists());
+    QVERIFY(!QFileInfo(expectedWallpaper.path()).exists());
 }
 
 void ProcessesTest::testWallpaperProcessHandlesInsertInvalidData() {
@@ -523,10 +552,10 @@ void ProcessesTest::testResumeUnfinishedPendingProcessResumeAndRunUnfinishedInse
     SongModel songModel(db);
 
     QCOMPARE(wallpaperModel.rowCount(), 1);
-    QVERIFY(QFileInfo(expectedWallpaper).exists());
+    QVERIFY(QFileInfo(expectedWallpaper.path()).exists());
 
     QCOMPARE(songModel.rowCount(), 1);
-    QVERIFY(QFileInfo(expectedSong).exists());
+    QVERIFY(QFileInfo(expectedSong.path()).exists());
 }
 
 void ProcessesTest::testRemoveMissingDataRemovesMissingData() {
@@ -553,19 +582,21 @@ void ProcessesTest::testRemoveMissingDataRemovesMissingData() {
 
     wallpaperModel.select();
     QCOMPARE(wallpaperModel.rowCount(), 3);
-    QVERIFY(QFileInfo(expectedWallpaper).exists());
+    QVERIFY(QFileInfo(expectedWallpaper.path()).exists());
 
     SongModel songModel(db);
 
     QVector<QVariantMap> songData {
         {
-            {"name", "song1"},
-            {"url", "file:///foo/path/song1.mp3"}
+            {"title", "song1"},
+            {"url", "file:///foo/path/song1.mp3"},
+            {"duration", 1000}
         },
 
         {
-            {"name", "song2"},
-            {"url", "file:///foo/path/song2.mp3"}
+            {"title", "song2"},
+            {"url", "file:///foo/path/song2.mp3"},
+            {"duration", 1000}
         }
     };
 
@@ -578,7 +609,7 @@ void ProcessesTest::testRemoveMissingDataRemovesMissingData() {
 
     songModel.select();
     QCOMPARE(songModel.rowCount(), 3);
-    QVERIFY(QFileInfo(expectedSong).exists());
+    QVERIFY(QFileInfo(expectedSong.path()).exists());
 
     std::unique_ptr<RemoveMissingDataProcess> missingRemove(new RemoveMissingDataProcess(modelController));
     missingRemove->start();
@@ -587,10 +618,10 @@ void ProcessesTest::testRemoveMissingDataRemovesMissingData() {
     songModel.select();
 
     QCOMPARE(wallpaperModel.rowCount(), 1);
-    QVERIFY(QFileInfo(expectedWallpaper).exists());
+    QVERIFY(QFileInfo(expectedWallpaper.path()).exists());
 
     QCOMPARE(songModel.rowCount(), 1);
-    QVERIFY(QFileInfo(expectedSong).exists());
+    QVERIFY(QFileInfo(expectedSong.path()).exists());
 }
 
 QTEST_APPLESS_MAIN(ProcessesTest)

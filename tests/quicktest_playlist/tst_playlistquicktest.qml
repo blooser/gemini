@@ -99,7 +99,7 @@ TestCase {
 
         var currentSong = playlist.currentSong
         compare(currentSong.id, 2)
-        compare(currentSong.url, "/foo/path2")
+        compare(currentSong.url, "file:///foo/path2")
     }
 
     ListModel {

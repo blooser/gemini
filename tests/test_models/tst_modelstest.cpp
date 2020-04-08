@@ -196,16 +196,19 @@ void ModelsTest::testModelFindBuddy() {
 
     QVector<QVariantMap> modelDatas = {
        {
-           { "url", "/foo/bar/test1" },
-           { "name", "test1" }
+           { "url", "file:///foo/bar/test1" },
+           { "title", "test1" },
+           { "duration", 500 }
        },
        {
-            { "url", "/foo/bar/test2" },
-            { "name", "test2" }
+            { "url", "file:///foo/bar/test2" },
+            { "title", "test2" },
+            { "duration", 500 }
        },
        {
-            { "url", "/foo/bar/test3" },
-            { "name", "test3" }
+            { "url", "file:///foo/bar/test3" },
+            { "title", "test3" },
+            { "duration", 500 }
        }
     };
 
@@ -213,13 +216,16 @@ void ModelsTest::testModelFindBuddy() {
         songModel.append(modelData);
     }
 
+    songModel.select();
+    QCOMPARE(songModel.rowCount(), 3);
+
     const QVariantMap searchModelData = {
-        { "url", "/foo/bar/test2" }
+        { "title", "test3" }
     };
 
-    auto buddy = songModel.findBuddy(searchModelData, "name");
+    auto buddy = songModel.findBuddy(searchModelData, "url");
     QVERIFY(buddy.isValid());
-    QCOMPARE(buddy.toString(), QStringLiteral("test2"));
+    QCOMPARE(buddy.toString(), QStringLiteral("file:///foo/bar/test3"));
 }
 
 void ModelsTest::testModelRemoveValue() {
@@ -228,16 +234,19 @@ void ModelsTest::testModelRemoveValue() {
 
     QVector<QVariantMap> modelDatas = {
         {
-           { "url", "/foo/bar/test1" },
-           { "name", "test1" }
+           { "url", "file:///foo/bar/test1" },
+           { "name", "test1" },
+           { "duration", 500 }
         },
         {
-            { "url", "/foo/bar/test2" },
-            { "name", "test2" }
+            { "url", "file:///foo/bar/test2" },
+            { "name", "test2" },
+            { "duration", 500 }
         },
         {
-            { "url", "/foo/bar/test3" },
-            { "name", "test3" }
+            { "url", "file:///foo/bar/test3" },
+            { "name", "test3" },
+            { "duration", 500 }
         }
     };
 
@@ -246,7 +255,7 @@ void ModelsTest::testModelRemoveValue() {
     }
 
     const QVariantMap dataToRemove = {
-        { "url", "/foo/bar/test2" },
+        { "url", "file:///foo/bar/test2" },
         { "name", "test2" }
     };
 
@@ -261,11 +270,11 @@ void ModelsTest::testModelEraseAllData() {
 
     QVector<QVariantMap> modelDatas = {
         {
-           { "url", "/foo/bar/test1" },
+           { "url", "file:///foo/bar/test1" },
            { "done", 1 }
         },
         {
-           { "url", "/foo/bar/test2" },
+           { "url", "file:///foo/bar/test2" },
            { "done", 1 }
         },
     };
@@ -283,16 +292,19 @@ void ModelsTest::testReadModelEmitsSizeChangedSignal() {
     SongModel songModel(db);
     QVector<QVariantMap> songModelData = {
         {
-           { "url", "/foo/bar/song1" },
-           { "name", "song1" },
+           { "url", "file:///foo/bar/song1" },
+           { "title", "song1" },
+           { "duration", 500 }
         },
         {
-           { "url", "/foo/bar/song2" },
-           { "name", "song2" },
+           { "url", "file:///foo/bar/song2" },
+           { "title", "song2" },
+           { "duration", 500 }
         },
         {
-           { "url", "/foo/bar/song3" },
-           { "name", "song3" },
+           { "url", "file:///foo/bar/song3" },
+           { "title", "song3" },
+           { "duration", 500 }
         },
     };
 
@@ -320,16 +332,19 @@ void ModelsTest::testSongsInRelationsProxyModelFilterSongs() {
     SongModel songModel(db);
     QVector<QVariantMap> songModelData = {
         {
-           { "url", "/foo/bar/song1" },
-           { "name", "song1" },
+           { "url", "file:///foo/bar/song1" },
+           { "title", "song1" },
+           { "duration", 500 }
         },
         {
-           { "url", "/foo/bar/song2" },
-           { "name", "song2" },
+           { "url", "file:///foo/bar/song2" },
+           { "title", "song2" },
+           { "duration", 500 }
         },
         {
-           { "url", "/foo/bar/song3" },
-           { "name", "song3" },
+           { "url", "file:///foo/bar/song3" },
+           { "title", "song3" },
+           { "duration", 500 }
         },
     };
 

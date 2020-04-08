@@ -43,12 +43,14 @@ public:
 
         QVector<QVariantMap> modelDatas {
             {
-                { "name", "song1" },
-                { "url", "/foo/path1" }
+                { "title", "song1" },
+                { "url", "file:///foo/path1" },
+                { "duration", 800 }
             },
             {
-                { "name", "song2" },
-                { "url", "/foo/path2" }
+                { "title", "song2" },
+                { "url", "file:///foo/path2" },
+                { "duration", 800 }
             }
         };
 

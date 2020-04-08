@@ -65,6 +65,10 @@ set (TEST_FILES
     ${PROJECT_SOURCE_DIR}/gemini/processes/remove/removemissingdataprocess.cpp 
 )
 
+include (FindLIBTAG)
+
 add_executable (tst_datacontrollertest tst_datacontrollertest.cpp ${TEST_FILES})
 qt5_use_modules (tst_datacontrollertest Core Test Sql Qml)
 add_test (NAME DataControllerTest COMMAND tst_datacontrollertest)
+
+target_link_libraries(tst_datacontrollertest ${TAGLIB_LIBRARIES})
