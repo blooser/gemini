@@ -148,11 +148,12 @@ if (USE_STRINGBUILDER)
 endif ()
 
 include (FindLIBVLC)
+include (FindLIBTAG)
 
 qtquick_compiler_add_resources (RESOURCES ${QRC_FILES})
 add_executable (gemini main.cpp ${COMMON_FILES} ${CONTROLLERS_FILES} ${DATA_FILES} ${DATABASE_FILES} ${PATHS_FILES} ${MODELS_FILES} ${PROCESSES_FILES} ${TOOLS_FILES} ${VLC_FILES} ${RESOURCES})
 qt5_use_modules (gemini Core Gui Widgets Quick Qml Svg Sql)
 
-target_link_libraries(gemini ${LIBVLC_LIBRARY} ${LIBVLCCORE_LIBRARY})
+target_link_libraries(gemini ${LIBVLC_LIBRARY} ${LIBVLCCORE_LIBRARY} ${TAGLIB_LIBRARIES})
 
 install (TARGETS gemini ${INSTALL_TARGETS_DEFAULT_ARGS})
