@@ -34,11 +34,11 @@ Item {
                 width: songs.width
                 playing: (!root.allSongs && id === sessionController.currentSong.id && sessionController.currentSong.playlist.id === sessionController.currentPlaylist.id)
 
-                text: name
+                text: title
 
                 onRemove: {
-                    const message = allSongs ? qsTr("Are you sure you want to delete <b>%1</b> song?").arg(name)
-                                             : qsTr("Are you sure you want to delete <b>%1</b> song from <b>%2</b> playlist?").arg(name).arg(sessionController.currentPlaylist.name)
+                    const message = allSongs ? qsTr("Are you sure you want to delete <b>%1</b> song?").arg(title)
+                                             : qsTr("Are you sure you want to delete <b>%1</b> song from <b>%2</b> playlist?").arg(title).arg(sessionController.currentPlaylist.name)
 
                     objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": message}, function(){
                         if (allSongs) {

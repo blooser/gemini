@@ -21,7 +21,7 @@ Item {
         delegate: CurrentPlaylistSong {
             width: songs.width
 
-            text: name
+            text: title
 
             current: (sessionController.currentSong.id === id && sessionController.currentSong.playlist.id === sessionController.currentPlaylist.id)
 

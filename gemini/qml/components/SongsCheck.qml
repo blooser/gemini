@@ -22,7 +22,7 @@ Item {
         model: songModel
 
         delegate: Items.GCheckBox {
-            text: name
+            text: title
 
             enabled: !dataController.containsData({"playlist": sessionController.currentPlaylist.id,
                                                    "song": id}, Enums.Data.Relations)
