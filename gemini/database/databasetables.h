@@ -24,7 +24,12 @@ extern const QVector<std::function<bool (const QSqlDatabase&)>> Tables {
 
         std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TABLE songs ("
                                                                                                                                      "`id` INTEGER PRIMARY KEY AUTOINCREMENT,"
-                                                                                                                                     "`name` TEXT NOT NULL,"
+                                                                                                                                     "`title` TEXT NOT NULL,"
+                                                                                                                                     "`duration` INTEGER NOT NULL,"
+                                                                                                                                     "`artist` TEXT,"
+                                                                                                                                     "`date` TEXT,"
+                                                                                                                                     "`album` TEXT,"
+                                                                                                                                     "`genre` TEXT,"
                                                                                                                                      "`url` TEXT NOT NULL UNIQUE"
                                                                                                                                      ")")),
 

@@ -12,7 +12,12 @@ class SongModel : public SqlTableModel {
 public:
     enum Column {
         Id = Qt::UserRole + 1,
-        Name,
+        Title,
+        Duration,
+        Artist,
+        Date,
+        Album,
+        Genre,
         Url,
 
         Last
