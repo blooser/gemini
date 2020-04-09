@@ -15,6 +15,7 @@ const QHash<int, QByteArray> SongModel::ROLE_NAMES {
     { Column::Date, QByteArrayLiteral("date") },
     { Column::Album, QByteArrayLiteral("album") },
     { Column::Genre, QByteArrayLiteral("genre") },
+    { Column::Completed, QByteArrayLiteral("completed") },
     { Column::Url, QByteArrayLiteral("url") }
 };
 
@@ -26,6 +27,7 @@ const QHash<int, QMetaType::Type> SongModel::DATA_TYPES {
     { Column::Date, QMetaType::QString },
     { Column::Album, QMetaType::QString },
     { Column::Genre, QMetaType::QString },
+    { Column::Completed, QMetaType::Bool },
     { Column::Url, QMetaType::QUrl }
 };
 

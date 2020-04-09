@@ -54,6 +54,7 @@ void AudioFileTest::cleanupTestCase() {
 void AudioFileTest::test_audioFileReadsTags() {
     AudioFile audioFile(m_song);
 
+    QCOMPARE(audioFile.isComplete(), true);
     // These values are in meta info of song.mp3 (check testingresources/song.mp3)
     QCOMPARE(audioFile.duration(), 261);
     QCOMPARE(audioFile.title(), "TestSong");

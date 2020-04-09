@@ -18,6 +18,7 @@ public:
         Date,
         Album,
         Genre,
+        Completed,
         Url,
 
         Last

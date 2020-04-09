@@ -26,6 +26,7 @@ QVariantMap SongInsertProcess::modelData(const QVariant &data) const {
         { "album", audioFile.album() },
         { "genre", audioFile.genre() },
         { "duration", audioFile.duration() },
+        { "completed", audioFile.isComplete() },
         { "url", audioFile.url() }
     };
 }

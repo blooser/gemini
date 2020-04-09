@@ -30,6 +30,7 @@ extern const QVector<std::function<bool (const QSqlDatabase&)>> Tables {
                                                                                                                                      "`date` TEXT,"
                                                                                                                                      "`album` TEXT,"
                                                                                                                                      "`genre` TEXT,"
+                                                                                                                                     "`completed` INTEGER DEFAULT 0,"
                                                                                                                                      "`url` TEXT NOT NULL UNIQUE"
                                                                                                                                      ")")),
 

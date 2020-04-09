@@ -433,7 +433,8 @@ void ProcessesTest::testSongProcessInsertSongWithParsedMeta() {
         { "date", 2006 },
         { "album", "testing" },
         { "genre", "Dream" },
-        { "url", expectedSong },
+        { "completed", true },
+        { "url", expectedSong }
     };
 
     auto index = songModel.index(0, 0);
