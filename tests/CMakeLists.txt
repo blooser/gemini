@@ -5,7 +5,7 @@ include_directories (
 set (CMAKE_AUTOMOC ON)
 set (CMAKE_AUTORCC ON)
 
-set (TESTING_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/testingresources.qrc)
+set (TESTING_RESOURCES ${CMAKE_CURRENT_SOURCE_DIR}/testresources/testresources.qrc)
 
 # Qt Quick test 
 add_subdirectory (quicktest_circleprogressbar)

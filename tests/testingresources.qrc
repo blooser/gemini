@@ -1,6 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file alias="wallpaper">testresources/wallpaper.png</file>
-        <file alias="song">testresources/song.mp3</file>
-    </qresource>
-</RCC>
