@@ -42,6 +42,7 @@ Rectangle {
             Layout.alignment: Qt.AlignCenter
 
             font.pixelSize: GeminiStyles.tFontPixelSize
+            font.family: GeminiStyles.audioProgressBarNumberFontFamily
 
             color: GeminiStyles.geminiSecondColor
         }

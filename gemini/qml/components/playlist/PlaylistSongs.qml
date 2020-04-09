@@ -1,6 +1,7 @@
 import QtQuick 2.14
 import QtQuick.Controls 2.14
 
+import com.gemini.common 0.1
 import com.gemini.enums 0.1
 import com.gemini.styles 0.1
 
@@ -35,7 +36,7 @@ Item {
                 playing: (!root.allSongs && id === sessionController.currentSong.id && sessionController.currentSong.playlist.id === sessionController.currentPlaylist.id)
 
                 songTitle: title
-                songDuration: duration
+                songDuration: Utility.formatTime(duration * 1000, "mm:ss")
 
                 onRemove: {
                     const message = allSongs ? qsTr("Are you sure you want to delete <b>%1</b> song?").arg(title)

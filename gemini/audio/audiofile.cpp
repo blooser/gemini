@@ -17,7 +17,7 @@ AudioFile::AudioFile(const QUrl &url)
         m_title = url.fileName();
     }
 
-    // TODO: Do critical, audio can't have duration=0
+    // FIXME: Audio can't have duration=0
     auto duration = file.audioProperties();
     m_duration = duration ? duration->length() : 0;
 }

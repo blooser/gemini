@@ -11,8 +11,8 @@ set (CMAKE_MODULE_PATH
     ${CMAKE_CURRENT_SOURCE_DIR}/cmake
 )
 
-option(ERASE_DATA "Erase whole saved data (It will erase on every application startup)" OFF)
-option(USE_STRINGBUILDER "Use fast concatenation" OFF)
+option (ERASE_DATA "Erase whole saved data (It will erase on every application startup)" OFF)
+option (USE_STRINGBUILDER "Use fast concatenation" OFF)
 
 add_compile_definitions (
     ProjectName="${PROJECT_NAME}"
