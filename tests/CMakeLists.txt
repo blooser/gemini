@@ -18,11 +18,9 @@ add_subdirectory (test_database)
 add_subdirectory (test_datacontroller)
 add_subdirectory (test_filecontroller)
 add_subdirectory (test_models)
+add_subdirectory (test_audiofile)
 add_subdirectory (test_objectcontroller)
 add_subdirectory (test_paths)
 add_subdirectory (test_processes)
 add_subdirectory (test_sessioncontroller)
 add_subdirectory (test_utility)
-
-# Vlc
-add_subdirectory(test_vlcmedia)
