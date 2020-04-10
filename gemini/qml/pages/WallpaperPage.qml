@@ -13,14 +13,22 @@ GPage {
     id: root
 
     header: PageHeaders.WallpaperPageHeader {
+        selectedWallpapers: wallpaperView.selectedWallpapers
+
         onAddWallpapers: objectController.openDialog(Enums.Dialog.FileOpenDialog, {"title": qsTr("Add new wallpapers"),
                                                                                    "nameFilters": ["Images (*.png *.jpg *.jpeg)"],
                                                                                    "folder": StandardPaths.writableLocation(StandardPaths.PicturesLocation)}, function(files){
             dataController.insertData(Helper.toList(files), Enums.Data.Wallpapers)
         })
+
+        onRemoveSelectedWallpapers: objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": qsTr("Are you sure you want to delete %1 wallpapers?").arg(selectedWallpapers.length)}, function(){
+            dataController.removeData(selectedWallpapers, Enums.Data.Wallpapers)
+        })
     }
 
     Wallpapers.WallpaperView {
+        id: wallpaperView
+
         anchors {
             fill: parent
             margins: GeminiStyles.nMargin

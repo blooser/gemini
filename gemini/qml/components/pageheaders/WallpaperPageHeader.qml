@@ -9,6 +9,9 @@ Items.GToolBar {
     id: root
 
     signal addWallpapers()
+    signal removeSelectedWallpapers()
+
+    property var selectedWallpapers: []
 
     implicitWidth: mainLayout.implicitWidth
 
@@ -21,11 +24,20 @@ Items.GToolBar {
         }
 
         Items.GToolButton {
-            Layout.alignment: Qt.AlignHCenter
+            Layout.alignment: Qt.AlignRight
 
             text: qsTr("Add wallpapers")
 
             onClicked: root.addWallpapers()
+        }
+
+        Items.GToolButton {
+            Layout.alignment: Qt.AlignLeft
+
+            text: qsTr("Remove %1 wallpapers").arg(selectedWallpapers.length)
+            opacity: selectedWallpapers.length
+
+            onClicked: root.removeSelectedWallpapers()
         }
     }
 }

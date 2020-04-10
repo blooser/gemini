@@ -31,9 +31,9 @@ GridView {
 
         onSelectedChanged: {
             if (selected) {
-                selectedWallpapers.push(id)
+                selectedWallpapers.push({"id": id, "url": url})
             } else {
-                selectedWallpapers.splice(selectedWallpapers.indexOf(id), 1)
+                selectedWallpapers.splice(selectedWallpapers.indexOf({"id": id, "url": url}), 1)
             }
 
             root.selectedWallpapersChanged()
@@ -45,5 +45,7 @@ GridView {
         onRemove: objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": qsTr("Are you sure you want to delete the wallpaper?")}, function(){
             dataController.removeData([{"id": id, "url": url}], Enums.Data.Wallpapers)
         })
+
+        Component.onDestruction: selected = false
     }
 }
