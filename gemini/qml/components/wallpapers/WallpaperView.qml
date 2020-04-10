@@ -14,8 +14,6 @@ Rectangle {
 
     property var selectedWallpapers: []
 
-    onSelectedWallpapersChanged: console.log(selectedWallpapers)
-
     implicitWidth: changer.implicitWidth
     implicitHeight: changer.implicitHeight
 
@@ -28,7 +26,7 @@ Rectangle {
     }
 
     Binding on selectedWallpapers {
-        value: wallpaperItems.selectedWallpapers
+        value: changer.currentItem.selectedWallpapers
         when: !changer.when // When changer has main item which is WallpaperItems
     }
 
