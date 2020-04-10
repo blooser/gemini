@@ -49,6 +49,8 @@ Item {
         WallpaperItemButtons {
             Layout.fillWidth: true
 
+            enabled: !root.selected
+
             onExpand: root.expand()
             onRemove: root.remove()
         }
