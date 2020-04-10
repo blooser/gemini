@@ -31,7 +31,9 @@ Rectangle {
             margins: GeminiStyles.tMargin
         }
 
-        main: WallpaperItems {}
+        main: WallpaperItems {
+            onSelectedWallpapersChanged: console.log(selectedWallpapers)
+        }
 
         replace: Components.TileText {
             text: qsTr("Click above button and fill your wallpaper board")

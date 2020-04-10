@@ -85,5 +85,6 @@
         <file>items/GToolTip.qml</file>
         <file>components/dynamic/Changer.qml</file>
         <file>components/wallpapers/WallpaperItems.qml</file>
+        <file>components/wallpapers/WallpaperSelection.qml</file>
     </qresource>
 </RCC>

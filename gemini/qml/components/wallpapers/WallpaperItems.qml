@@ -9,6 +9,8 @@ import ".." as Components
 GridView {
     id: root
 
+    property var selectedWallpapers: []
+
     model: wallpaperModel
 
     cellWidth: 180; cellHeight: 180
@@ -25,6 +27,16 @@ GridView {
             if (current) {
                 root.currentIndex = index
             }
+        }
+
+        onSelectedChanged: {
+            if (selected) {
+                selectedWallpapers.push(id)
+            } else {
+                selectedWallpapers.splice(selectedWallpapers.indexOf(id), 1)
+            }
+
+            root.selectedWallpapersChanged()
         }
 
         source: url
