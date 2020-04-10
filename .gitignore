@@ -144,3 +144,7 @@ tags
 
 # Coc configuration directory
 .vim
+
+# Build
+build
+

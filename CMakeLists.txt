@@ -14,11 +14,14 @@ set (CMAKE_MODULE_PATH
 option (ERASE_DATA "Erase whole saved data (It will erase on every application startup)" OFF)
 option (USE_STRINGBUILDER "Use fast concatenation" OFF)
 
+execute_process (COMMAND git rev-parse --verify --short HEAD OUTPUT_VARIABLE REVISION)
+
 add_compile_definitions (
     ProjectName="${PROJECT_NAME}"
     ProjectVersion="${PROJECT_VERSION}"
     OrganizationName="blooser"
     OrganizationDomain="https://github.com/blooser"
+    Revision="${REVISION}"
 )
 
 enable_testing ()
