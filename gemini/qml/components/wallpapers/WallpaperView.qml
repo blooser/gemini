@@ -12,6 +12,10 @@ import "../dynamic" as Dynamic
 Rectangle {
     id: root
 
+    property var selectedWallpapers: []
+
+    onSelectedWallpapersChanged: console.log(selectedWallpapers)
+
     implicitWidth: changer.implicitWidth
     implicitHeight: changer.implicitHeight
 
@@ -23,6 +27,11 @@ Rectangle {
         color: GeminiStyles.geminiSecondColor
     }
 
+    Binding on selectedWallpapers {
+        value: wallpaperItems.selectedWallpapers
+        when: !changer.when // When changer has main item which is WallpaperItems
+    }
+
     Dynamic.Changer {
         id: changer
 
@@ -32,7 +41,7 @@ Rectangle {
         }
 
         main: WallpaperItems {
-            onSelectedWallpapersChanged: console.log(selectedWallpapers)
+            id: wallpaperItems
         }
 
         replace: Components.TileText {
