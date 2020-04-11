@@ -2,16 +2,16 @@ import QtQuick 2.14
 
 import com.gemini.styles 0.1
 
-import "../items" as Items
+import "../items/headers" as Headers
 
-Items.GText {
+Headers.TextHeader {
     id: root
 
-    horizontalAlignment: Text.AlignLeft
-    wrapMode: Text.WordWrap
+    property var song
 
-    font {
-        pixelSize: GeminiStyles.bFontPixelSize
-        bold: true
-    }
+    header: song.title
+    text: song.artist
+
+    headerHorizontalAlignment: Text.AlignLeft
+    horizontalAlignment: Text.AlignLeft
 }

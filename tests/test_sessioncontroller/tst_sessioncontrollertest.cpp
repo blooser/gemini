@@ -52,7 +52,7 @@ void SessionControllerTest::init() {
 
 void SessionControllerTest::testSessionControllerLoadsWithDefaultsSettings() {
     data::Playlist playlist{-1, ""};
-    data::Song song{-1, QUrl(), playlist};
+    data::Song song{-1, "", 0, "", "", "", "", false, QUrl(), playlist};
 
     {
         SessionController sessionContorller(QDir::currentPath());
@@ -70,7 +70,7 @@ void SessionControllerTest::testSessionControllerLoadsWithDefaultsSettings() {
 
 void SessionControllerTest::testSessionControllerSavesAndLoadsSettings() {
     data::Playlist playlist{45, "Best"};
-    data::Song song{25, QUrl("file:///foo/bar/song"), playlist};
+    data::Song song{25, "Test", 500, "Unknown", "2009", "Best", "Rock", true, QUrl("file:///foo/bar/song"), playlist};
 
     {
         SessionController sessionController(QDir::currentPath());

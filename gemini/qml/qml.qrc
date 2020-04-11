@@ -13,7 +13,6 @@
         <file>dialogs/GBaseDialog.qml</file>
         <file>dialogs/GDialog.qml</file>
         <file>dialogs/NewPlaylistDialog.qml</file>
-        <file>components/SongInfo.qml</file>
         <file>components/audio/AudioProgressbar.qml</file>
         <file>items/GImageButton.qml</file>
         <file>components/audio/AudioControl.qml</file>
@@ -84,5 +83,7 @@
         <file>components/wallpapers/Wallpaper.qml</file>
         <file>items/GToolTip.qml</file>
         <file>components/dynamic/Changer.qml</file>
+        <file>items/headers/TextHeader.qml</file>
+        <file>components/SongInfo.qml</file>
     </qresource>
 </RCC>

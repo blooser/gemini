@@ -84,7 +84,7 @@ GWallpaperPage {
             margins: GeminiStyles.nMargin
         }
 
-        songName: player.meta.title
+        song: geminiPlaylist.currentSong
         playing: (player.status === Player.Playing)
     }
 

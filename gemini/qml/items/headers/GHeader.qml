@@ -9,6 +9,8 @@ Item {
     id: root
 
     property alias header: headerText.text
+    property alias headerHorizontalAlignment: headerText.horizontalAlignment
+
     default property alias content: mainLayout.data
 
     implicitWidth: mainLayout.implicitWidth
@@ -23,7 +25,9 @@ Item {
 
         Items.GText {
             id: headerText
+            Layout.fillWidth: true
             font.pixelSize: GeminiStyles.hFontPixelSize
+            wrapMode: Text.WordWrap
         }
     }
 }

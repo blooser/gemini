@@ -12,7 +12,7 @@ Item {
     property bool audioControlEnabled: false
 
     property alias playing: audioControl.playing
-    property alias songName: songInfo.text
+    property alias song: songInfo.song
 
     implicitWidth: mainLayout.implicitWidth
     implicitHeight: mainLayout.implicitHeight

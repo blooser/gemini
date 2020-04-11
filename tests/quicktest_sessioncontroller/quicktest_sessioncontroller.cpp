@@ -14,7 +14,7 @@ class Setup : public QObject {
 public:
     Setup()
         : playlist{5, "playlist"},
-          song{25, QString("/foo/bar/song.mp3"), playlist} {}
+          song{25, "", 0, "", "", "", "", false, QString("/foo/bar/song.mp3"), playlist} {}
 
 public slots:
     void applicationAvailable() {
