@@ -15,6 +15,7 @@ Items.GToolBar {
 
     implicitWidth: mainLayout.implicitWidth
 
+    // TODO: Make a special component for these button alignment
     RowLayout {
         id: mainLayout
 
