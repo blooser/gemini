@@ -156,7 +156,8 @@ endif ()
 include (FindLIBVLC)
 include (FindLIBTAG)
 
-qtquick_compiler_add_resources (RCC_RESOURCES ${QRC_FILES})
+# TODO: Use this in add_executable
+#qtquick_compiler_add_resources (RCC_RESOURCES ${QRC_FILES})
 add_executable (gemini main.cpp ${COMMON_FILES} ${CONTROLLERS_FILES} ${DATA_FILES} ${DATABASE_FILES} ${PATHS_FILES} ${MODELS_FILES} ${AUDIO_FILES} ${PROCESSES_FILES} ${TOOLS_FILES} ${VLC_FILES} ${QRC_FILES})
 qt5_use_modules (gemini Core Gui Widgets Quick Qml Svg Sql)
 
