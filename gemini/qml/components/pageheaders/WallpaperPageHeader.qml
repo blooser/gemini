@@ -23,21 +23,36 @@ Items.GToolBar {
             margins: GeminiStyles.tMargin
         }
 
-        Items.GToolButton {
-            Layout.alignment: Qt.AlignRight
+        RowLayout {
+            Layout.alignment: Qt.AlignHCenter
 
-            text: qsTr("Add wallpapers")
+            Items.GToolButton {
+                text: qsTr("Add wallpapers")
 
-            onClicked: root.addWallpapers()
+                onClicked: root.addWallpapers()
+            }
+
+            Items.GToolButton {
+                id: removeSelectedWallpapersToolButton
+
+                text: qsTr("Remove %1 wallpapers").arg(selectedWallpapers.length)
+
+                onClicked: root.removeSelectedWallpapers()
+            }
         }
+    }
 
-        Items.GToolButton {
-            Layout.alignment: Qt.AlignLeft
+    states: [
+        State {
+            when: !selectedWallpapers.length
+            PropertyChanges { target: removeSelectedWallpapersToolButton; implicitWidth: GeminiStyles.none; implicitHeight: GeminiStyles.none; opacity: GeminiStyles.hidden }
+        }
+    ]
 
-            text: qsTr("Remove %1 wallpapers").arg(selectedWallpapers.length)
-            opacity: selectedWallpapers.length
-
-            onClicked: root.removeSelectedWallpapers()
+    transitions: Transition {
+        ParallelAnimation {
+            NumberAnimation { property: "opacity"; duration: GeminiStyles.quickAnimation }
+            NumberAnimation { properties: "implicitWidth, implicitHeight"; duration: GeminiStyles.quickAnimation }
         }
     }
 }
