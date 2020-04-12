@@ -10,6 +10,7 @@ Item {
     id: root
 
     property alias source: image.source
+    property bool selected: false
 
     signal expand()
     signal remove()
@@ -33,10 +34,22 @@ Item {
 
             fillMode: Image.Stretch
             asynchronous: true
+
+            WallpaperSelection {
+                visible: root.selected
+                anchors.fill: parent
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                onClicked: root.selected = !root.selected
+            }
         }
 
         WallpaperItemButtons {
             Layout.fillWidth: true
+
+            enabled: !root.selected
 
             onExpand: root.expand()
             onRemove: root.remove()

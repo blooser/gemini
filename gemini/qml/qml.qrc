@@ -85,5 +85,7 @@
         <file>components/dynamic/Changer.qml</file>
         <file>items/headers/TextHeader.qml</file>
         <file>components/SongInfo.qml</file>
+        <file>components/wallpapers/WallpaperItems.qml</file>
+        <file>components/wallpapers/WallpaperSelection.qml</file> 
     </qresource>
 </RCC>

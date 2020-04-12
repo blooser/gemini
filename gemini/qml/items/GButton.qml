@@ -11,10 +11,11 @@ Button {
 
     font.capitalization: Font.AllUppercase
 
+    opacity: enabled ? GeminiStyles.opacityVisible : GeminiStyles.opacityDisabledVisible
+
     contentItem: GText {
         text: root.text
         font: root.font
-        opacity: enabled ? GeminiStyles.opacityVisible : GeminiStyles.opacityDisabledVisible
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
@@ -25,12 +26,17 @@ Button {
         implicitWidth: GeminiStyles.controlImplicitWidth
         implicitHeight: GeminiStyles.controlImplicitHeight
 
-        opacity: enabled ? GeminiStyles.opacityVisible : GeminiStyles.opacityDisabledVisible
         color: checked ? GeminiStyles.highlightColor : GeminiStyles.geminiThirdColor
 
         border {
             color: GeminiStyles.geminiBaseColor
             width: GeminiStyles.borderWidth
+        }
+    }
+
+    Behavior on opacity {
+        OpacityAnimator {
+            duration: GeminiStyles.quickAnimation
         }
     }
 }

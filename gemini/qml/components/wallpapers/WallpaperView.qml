@@ -12,6 +12,8 @@ import "../dynamic" as Dynamic
 Rectangle {
     id: root
 
+    property var selectedWallpapers: []
+
     implicitWidth: changer.implicitWidth
     implicitHeight: changer.implicitHeight
 
@@ -23,6 +25,11 @@ Rectangle {
         color: GeminiStyles.geminiSecondColor
     }
 
+    Binding on selectedWallpapers {
+        value: changer.currentItem.selectedWallpapers
+        when: !changer.when // When changer has main item which is WallpaperItems
+    }
+
     Dynamic.Changer {
         id: changer
 
@@ -31,34 +38,8 @@ Rectangle {
             margins: GeminiStyles.tMargin
         }
 
-        main: GridView {
-            id: gridView
-
-            model: wallpaperModel
-
-            cellWidth: 180; cellHeight: 180
-
-            currentIndex: -1
-            highlight: Components.Highlight {}
-
-            delegate: WallpaperItem {
-                width: 150; height: 150
-
-                readonly property bool current: (source == sessionController.currentWallpaper)
-
-                onCurrentChanged: {
-                    if (current) {
-                        gridView.currentIndex = index
-                    }
-                }
-
-                source: url
-
-                onExpand: objectController.openDialog(Enums.Dialog.WallpaperDialog, {"source": url}, null)
-                onRemove: objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": qsTr("Are you sure you want to delete the wallpaper?")}, function(){
-                    dataController.removeData([{"id": id, "url": url}], Enums.Data.Wallpapers)
-                })
-            }
+        main: WallpaperItems {
+            id: wallpaperItems
         }
 
         replace: Components.TileText {
