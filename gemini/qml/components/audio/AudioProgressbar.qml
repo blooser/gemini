@@ -36,6 +36,6 @@ CircleProgressBar {
     }
 
     Behavior on value {
-        PropertyAnimation { duration: GeminiStyles.quickAnimation }
+        NumberAnimation { duration: GeminiStyles.quickAnimation }
     }
 }
