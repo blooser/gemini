@@ -116,8 +116,6 @@ set (VLC_FILES
     vlc/vlccore.h
     vlc/vlcmedia.cpp
     vlc/vlcmedia.h
-    vlc/vlcmeta.cpp
-    vlc/vlcmeta.h
     vlc/vlcmusic.cpp
     vlc/vlcmusic.h
     vlc/vlcplayer.cpp

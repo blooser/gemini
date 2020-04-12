@@ -26,8 +26,6 @@ class Player : public QObject,
                WRITE setSource NOTIFY sourceChanged)
     Q_PROPERTY(Status status READ status
                NOTIFY statusChanged)
-    Q_PROPERTY(vlc::Meta meta READ meta
-               NOTIFY metaChanged)
     Q_PROPERTY(int volume READ volume
               WRITE setVolume NOTIFY volumeChanged)
     Q_PROPERTY(int time READ time
@@ -58,7 +56,6 @@ public:
     void setSource(const QUrl &source);
 
     Status status() const;
-    vlc::Meta meta() const;
 
     int volume() const;
     void setVolume(const int volume);
@@ -87,7 +84,6 @@ signals:
     void timeChanged();
     void muteChanged();
     void stateChanged();
-    void metaChanged();
     void mediaEnd();
 
 private:

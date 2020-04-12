@@ -27,8 +27,6 @@ void Player::setupConnections() {
     connect(&m_vlcPlayer, &VlcPlayer::mediaEnd,
             this, &Player::mediaEnd, Qt::QueuedConnection);
 
-    connect(&m_vlcMedia, &VlcMedia::metaChanged,
-            this, &Player::metaChanged, Qt::QueuedConnection);
 }
 
 void Player::onSourceChanged() {
@@ -36,7 +34,6 @@ void Player::onSourceChanged() {
 
     if (not hasAudio()) {
         m_vlcPlayer.release();
-        m_vlcMedia.release();
         emit sourceChanged(QUrl());
         return;
     }
@@ -99,10 +96,6 @@ bool Player::muted() const {
 
 bool Player::hasAudio() const {
     return m_source.isValid();
-}
-
-vlc::Meta Player::meta() const {
-    return m_vlcMedia.meta();
 }
 
 void Player::setSource(const QUrl &source) {
