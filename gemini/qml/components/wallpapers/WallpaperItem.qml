@@ -32,6 +32,8 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
+            cache: false
+
             fillMode: Image.Stretch
             asynchronous: true
 
