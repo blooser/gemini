@@ -6,6 +6,8 @@ import com.gemini.common 0.1
 Image {
     id: root
 
+    cache: false
+
     WallpaperInfo {
         resolution: "%1 x %2".arg(root.implicitWidth).arg(root.implicitHeight)
         fileSize: Utility.fileSize(root.source)

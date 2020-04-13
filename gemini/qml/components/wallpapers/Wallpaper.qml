@@ -26,12 +26,16 @@ Item {
     Image {
         id: frontImage
 
+        cache: false
+
         anchors.fill: parent
         fillMode: Image.Stretch
     }
 
     Image {
         id: backImage
+
+        cache: false
 
         anchors.fill: parent
         fillMode: Image.Stretch
