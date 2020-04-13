@@ -151,6 +151,10 @@ if (USE_STRINGBUILDER)
     add_compile_definitions(QT_USE_QSTRINGBUILDER)
 endif ()
 
+if (QML_DEBUG)
+    add_compile_definitions(QT_QML_DEBUG)
+endif ()
+
 include (FindLIBVLC)
 include (FindLIBTAG)
 
