@@ -564,12 +564,10 @@ void ProcessesTest::testRemoveMissingDataRemovesMissingData() {
 
     QVector<QVariantMap> wallpaperData {
         {
-            {"name", "wallpaper1"},
             {"url", "file:///foo/path/wallpaper1.jpeg"}
         },
 
         {
-            {"name", "wallpaper2"},
             {"url", "file:///foo/path/wallpaper2.jpeg"}
         }
     };

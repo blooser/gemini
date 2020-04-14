@@ -256,7 +256,6 @@ void ModelsTest::testModelRemoveValue() {
 
     const QVariantMap dataToRemove = {
         { "url", "file:///foo/bar/test2" },
-        { "name", "test2" }
     };
 
     QCOMPARE(wallpaperModel.rowCount(), 3);

@@ -17,7 +17,6 @@ WallpaperInsertProcess::WallpaperInsertProcess(const std::shared_ptr<ModelContro
 
 QVariantMap WallpaperInsertProcess::modelData(const QVariant &data) const {
     return {
-        { "name", data.toUrl().fileName() },
         { "url", data.toUrl() }
     };
 }

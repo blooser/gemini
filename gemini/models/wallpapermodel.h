@@ -15,7 +15,6 @@ class WallpaperModel : public SqlTableModel {
 public:
     enum Column {
         Id = Qt::UserRole + 1,
-        Name,
         Url,
 
         Last

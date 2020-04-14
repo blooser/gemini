@@ -12,13 +12,11 @@ Q_LOGGING_CATEGORY(wallpaperModel, "wallpaper.model")
 
 const QHash<int, QByteArray> WallpaperModel::ROLE_NAMES {
     { Column::Id, QByteArrayLiteral("id") },
-    { Column::Name, QByteArrayLiteral("name") },
     { Column::Url, QByteArrayLiteral("url") },
 };
 
 const QHash<int, QMetaType::Type> WallpaperModel::DATA_TYPES {
     { Column::Id, QMetaType::Int },
-    { Column::Name, QMetaType::QString },
     { Column::Url, QMetaType::QUrl}
 };
 
