@@ -13,8 +13,7 @@ class PendingModel : public SqlTableModel {
 
 public:
     enum Column {
-        Id = Qt::UserRole + 1,
-        Url,
+        Url = Qt::UserRole + 1,
         Done,
 
         Last
