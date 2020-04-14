@@ -430,7 +430,7 @@ void ProcessesTest::testSongProcessInsertSongWithParsedMeta() {
         { "title", "TestSong" },
         { "duration", 261 },
         { "artist", "Test" },
-        { "date", 2006 },
+        { "year", 2006 },
         { "album", "testing" },
         { "genre", "Dream" },
         { "completed", true },

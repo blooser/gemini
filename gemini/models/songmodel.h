@@ -13,11 +13,11 @@ public:
     enum Column {
         Id = Qt::UserRole + 1,
         Title,
-        Duration,
         Artist,
-        Date,
         Album,
         Genre,
+        Year,
+        Duration,
         Completed,
         Url,
 

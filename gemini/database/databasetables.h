@@ -26,11 +26,11 @@ extern const QVector<std::function<bool (const QSqlDatabase&)>> Tables {
         std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TABLE songs ("
                                                                                                                                      "`id` INTEGER PRIMARY KEY AUTOINCREMENT,"
                                                                                                                                      "`title` TEXT NOT NULL,"
-                                                                                                                                     "`duration` INTEGER NOT NULL CHECK(duration>0),"
                                                                                                                                      "`artist` TEXT,"
-                                                                                                                                     "`date` TEXT,"
                                                                                                                                      "`album` TEXT,"
                                                                                                                                      "`genre` TEXT,"
+                                                                                                                                     "`year` INTEGER,"
+                                                                                                                                     "`duration` INTEGER NOT NULL CHECK(duration>0),"
                                                                                                                                      "`completed` INTEGER DEFAULT 0,"
                                                                                                                                      "`url` TEXT NOT NULL UNIQUE"
                                                                                                                                      ")")),

@@ -22,7 +22,7 @@ QVariantMap SongInsertProcess::modelData(const QVariant &data) const {
     return {
         { "title", audioFile.title() },
         { "artist", audioFile.artist() },
-        { "date", audioFile.year() },
+        { "year", audioFile.year() },
         { "album", audioFile.album() },
         { "genre", audioFile.genre() },
         { "duration", audioFile.duration() },
