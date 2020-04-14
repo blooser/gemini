@@ -16,6 +16,8 @@ public:
     enum Column {
         Id = Qt::UserRole + 1,
         Name,
+        Songs,
+        Duration,
 
         Last
     };

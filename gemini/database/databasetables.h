@@ -19,7 +19,9 @@ extern const QVector<std::function<bool (const QSqlDatabase&)>> Tables {
 
         std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TABLE playlists ("
                                                                                                                                      "`id` INTEGER PRIMARY KEY AUTOINCREMENT,"
-                                                                                                                                     "`name` TEXT NOT NULL UNIQUE"
+                                                                                                                                     "`name` TEXT NOT NULL UNIQUE,"
+                                                                                                                                     "`songs` INTEGER DEFAULT 0,"
+                                                                                                                                     "`duration` INTEGER DEFAULT 0"
                                                                                                                                      ")")),
 
         std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TABLE songs ("

@@ -9,12 +9,16 @@ Q_LOGGING_CATEGORY(playlistModel, "playlist.model")
 
 const QHash<int, QByteArray> PlaylistModel::ROLE_NAMES {
     { Column::Id, QByteArrayLiteral("id") },
-    { Column::Name, QByteArrayLiteral("name") }
+    { Column::Name, QByteArrayLiteral("name") },
+    { Column::Songs, QByteArrayLiteral("songs") },
+    { Column::Duration, QByteArrayLiteral("duration") }
 };
 
 const QHash<int, QMetaType::Type> PlaylistModel::DATA_TYPES {
     { Column::Id, QMetaType::Int },
-    { Column::Name, QMetaType::QString}
+    { Column::Name, QMetaType::QString },
+    { Column::Songs, QMetaType::Int },
+    { Column::Duration, QMetaType::Int }
 };
 
 PlaylistModel::PlaylistModel(QSqlDatabase &db, QObject *parent)
