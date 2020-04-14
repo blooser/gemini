@@ -37,7 +37,9 @@ extern const QVector<std::function<bool (const QSqlDatabase&)>> Tables {
 
         std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TABLE relations ("
                                                                                                                                      "`playlist` INTEGER NOT NULL,"
-                                                                                                                                     "`song` INTEGER NOT NULL"
+                                                                                                                                     "`song` INTEGER NOT NULL,"
+                                                                                                                                     "FOREIGN KEY(playlist) references playlists(id),"
+                                                                                                                                     "FOREIGN KEY(song) references songs(id)"
                                                                                                                                      ")")),
 
         std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TABLE pending ("
