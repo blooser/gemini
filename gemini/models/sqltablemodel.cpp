@@ -14,7 +14,7 @@ SqlTableModel::SqlTableModel(QSqlDatabase &database, const QString &table, QObje
     setTable(table);
     select();
 
-    qCInfo(sqlTableModel) << "Prepare" << tableName() << "number of rows:" << rowCount();
+    qCInfo(sqlTableModel) << "Populate" << tableName() << "number of rows:" << rowCount();
 }
 
 int SqlTableModel::roleShift(const int column) const {
