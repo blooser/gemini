@@ -66,4 +66,8 @@ void DatabaseController::fillDatabase() {
     for (auto &table : database::Tables) {
         table(m_database);
     }
+
+    for (auto &trigger : database::Triggers) {
+        trigger(m_database);
+    }
 }
