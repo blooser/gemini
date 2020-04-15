@@ -32,6 +32,7 @@ void ModelController::appendData(const QVariantMap &data, Enums::Data type) {
             break;
         case RELATIONS:
             m_relationModel->append(data);
+            tryToUpdatePlaylist(data["playlist"].toInt());
             break;
         case WALLPAPERS:
             m_wallpaperModel->append(data);
@@ -125,6 +126,7 @@ void ModelController::removeData(const QVariantMap &modelData, Enums::Data type)
             break;
         case RELATIONS:
             m_relationModel->remove(modelData);
+            tryToUpdatePlaylist(modelData["playlist"].toInt());
             break;
         case WALLPAPERS:
             m_wallpaperModel->remove(modelData);
@@ -179,6 +181,16 @@ QVariant ModelController::findBuddy(const QVariantMap &modelData, const QByteArr
             qCWarning(modelController) << "findBuddy: Unknown data type!";
             return QVariant();
             break;
+    }
+}
+
+void ModelController::tryToUpdatePlaylist(const int id) {
+    auto playlist = m_playlistModel->find({{"id", id}}, 1);
+
+    if (not playlist.isEmpty()) {
+        if (m_playlistModel->selectRow(playlist.first().row())) {
+            qCInfo(modelController) << "Successfully updated playlist with id:" << id;
+        }
     }
 }
 

@@ -40,6 +40,9 @@ public:
 
     void setQMLContext(QQmlApplicationEngine &engine);
 
+protected:
+    void tryToUpdatePlaylist(const int id);
+
 private:
     QSqlDatabase m_database;
     std::shared_ptr<WallpaperModel> m_wallpaperModel;
