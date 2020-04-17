@@ -45,7 +45,7 @@ Items.GToolBar {
                 Transition {
                     from: "*"; to: "hidden"
                     SequentialAnimation {
-                        OpacityAnimator { duration: GeminiStyles.quickAnimation }
+                        OpacityAnimator { from: GeminiStyles.visible; to: GeminiStyles.hidden; duration: GeminiStyles.quickAnimation }
                         NumberAnimation { properties: "implicitWidth, implicitHeight"; duration: GeminiStyles.quickAnimation }
                     }
                 },
@@ -54,7 +54,7 @@ Items.GToolBar {
                     from: "hidden"; to: "*"
                     SequentialAnimation {
                         NumberAnimation { properties: "implicitWidth, implicitHeight"; duration: GeminiStyles.quickAnimation }
-                        OpacityAnimator { duration: GeminiStyles.quickAnimation }
+                        OpacityAnimator { from: GeminiStyles.hidden; to: GeminiStyles.visible; duration: GeminiStyles.quickAnimation }
                     }
                 }
             ]
