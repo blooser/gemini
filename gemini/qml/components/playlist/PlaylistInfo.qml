@@ -26,6 +26,7 @@ Item {
         PlaylistLabel {
             id: songsLabel
 
+            Layout.alignment: Qt.AlignRight
             font.family: GeminiStyles.numberFontFamily
             iconSource: "qrc:/icons/music"
             hidden: (text === "0")
