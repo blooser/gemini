@@ -15,9 +15,9 @@ Components.Label {
 
         PropertyChanges {
             target: root
-            opacity: 0
-            implicitWidth: 0
-            implicitHeight: 0
+            opacity: GeminiStyles.none
+            implicitWidth: GeminiStyles.none
+            implicitHeight: GeminiStyles.none
         }
     }
 

@@ -12,11 +12,11 @@ Rectangle {
     property alias text: tileText.text
     property alias font: tileText.font
 
-    implicitWidth: mainLayout.implicitWidth + 15
-    implicitHeight: mainLayout.implicitHeight + 10
+    implicitWidth: mainLayout.implicitWidth + GeminiStyles.bMargin
+    implicitHeight: mainLayout.implicitHeight + GeminiStyles.nMargin
 
     color: GeminiStyles.geminiSecondColor
-    radius: 5
+    radius: GeminiStyles.tMargin
 
     RowLayout {
         id: mainLayout

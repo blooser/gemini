@@ -13,8 +13,8 @@ Item {
     property alias songs: songsLabel.text
     property alias duration: durationLabel.text
 
-    implicitWidth: mainLayout.implicitWidth + 15
-    implicitHeight: mainLayout.implicitHeight + 10
+    implicitWidth: mainLayout.implicitWidth + GeminiStyles.bMargin
+    implicitHeight: mainLayout.implicitHeight + GeminiStyles.nMargin
 
     RowLayout {
         id: mainLayout
@@ -26,6 +26,7 @@ Item {
         PlaylistLabel {
             id: songsLabel
 
+            font.family: GeminiStyles.numberFontFamily
             iconSource: "qrc:/icons/music"
             hiddenOn: (text === "0")
 
@@ -34,6 +35,7 @@ Item {
         PlaylistLabel {
             id: durationLabel
 
+            font.family: GeminiStyles.numberFontFamily
             iconSource: "qrc:/icons/time"
             hiddenOn: (text === "00:00" || text === "")
         }
