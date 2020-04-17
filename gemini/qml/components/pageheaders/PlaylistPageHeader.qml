@@ -38,7 +38,7 @@ Items.GToolBar {
             states: State {
                 name: "hidden"
                 when: !selectedSongs.length
-                PropertyChanges { target: removeSelectedSongsToolButton; opacity: 0; implicitWidth: 0; implicitHeight: 0; }
+                PropertyChanges { target: removeSelectedSongsToolButton; opacity: GeminiStyles.none; implicitWidth: GeminiStyles.none; implicitHeight: GeminiStyles.none; }
             }
 
             transitions: [
