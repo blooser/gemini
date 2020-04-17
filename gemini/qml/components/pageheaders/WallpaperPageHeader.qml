@@ -14,8 +14,6 @@ Items.GToolBar {
     property var selectedWallpapers: []
 
     middleContent: RowLayout {
-        Layout.alignment: Qt.AlignHCenter
-
         Items.GToolButton {
             text: qsTr("Add wallpapers")
 

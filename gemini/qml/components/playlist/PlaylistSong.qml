@@ -11,14 +11,21 @@ Rectangle {
 
     property alias songTitle: title.text
     property alias songDuration: duration.text
+
     property bool playing: false
 
     signal remove()
-
-    color: GeminiStyles.geminiThirdColor
+    signal clicked()
 
     implicitWidth: mainLayout.implicitWidth
     implicitHeight: mainLayout.implicitHeight
+
+    color: GeminiStyles.geminiThirdColor
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: root.clicked()
+    }
 
     RowLayout {
         id: mainLayout
@@ -53,6 +60,7 @@ Rectangle {
 
             radius: GeminiStyles.none
             border.width: GeminiStyles.none
+            backgroundColor: GeminiStyles.blank
 
             iconSource: "qrc:/icons/delete"
 

@@ -13,8 +13,15 @@ Item {
 
     property bool allSongs: false
 
+    property var selectedSongs: []
+
     implicitWidth: changer.implicitWidth
     implicitHeight: changer.implicitHeight
+
+    Binding on selectedSongs {
+        value: changer.currentItem.selectedSongs
+        when: !changer.when // NOTE: When the main item is PlaylistSongs
+    }
 
     Dynamic.Changer {
         id: changer

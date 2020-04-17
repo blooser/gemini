@@ -13,8 +13,18 @@ Item {
 
     property bool allSongs: false
 
+    property var selectedSongs: []
+
     implicitWidth: songs.implicitWidth
     implicitHeight: songs.implicitHeight
+
+    onAllSongsChanged: selectedSongs = []
+
+    Connections {
+        target: sessionController
+
+        onCurrentPlaylistChanged: selectedSongs = []
+    }
 
     ListView {
         id: songs
@@ -32,6 +42,21 @@ Item {
             songTitle: title
             songDuration: Utility.formatTime(duration * 1000, "mm:ss")
 
+            property int indexInSelectedSongs: selectedSongs.indexOf((selectedSongs.find(song => (allSongs) ? song.id === id : song.song === id)))
+            property bool selected: (indexInSelectedSongs !== -1)
+
+            border.color: selected ? GeminiStyles.highlightColor : GeminiStyles.blank
+
+            onClicked: {
+                if (!selected) {
+                    selectedSongs.push(allSongs ? {"id": id} : {"playlist": sessionController.currentPlaylist.id, "song": id})
+                } else {
+                    selectedSongs.splice(indexInSelectedSongs, 1)
+                }
+
+                root.selectedSongsChanged()
+            }
+
             onRemove: {
                 const message = allSongs ? qsTr("Are you sure you want to delete <b>%1</b> song?").arg(title)
                                          : qsTr("Are you sure you want to delete <b>%1</b> song from <b>%2</b> playlist?").arg(title).arg(sessionController.currentPlaylist.name)
@@ -43,6 +68,11 @@ Item {
                         dataController.removeData([{"playlist": sessionController.currentPlaylist.id, "song": id}], Enums.Data.Relations)
                     }
                 })
+            }
+
+            Component.onDestruction: {
+                selectedSongs.splice(indexInSelectedSongs, 1)
+                root.selectedSongsChanged()
             }
         }
     }

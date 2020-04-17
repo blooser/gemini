@@ -8,6 +8,7 @@ Button {
 
     property alias radius: backgroundRectangle.radius
     property alias border: backgroundRectangle.border
+    property alias backgroundColor: backgroundRectangle.color
 
     font.capitalization: Font.AllUppercase
 

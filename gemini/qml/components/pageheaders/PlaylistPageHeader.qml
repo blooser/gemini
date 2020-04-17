@@ -10,33 +10,54 @@ Items.GToolBar {
 
     signal newPlaylist()
     signal addSongs()
+    signal removeSelectedSongs()
 
-    implicitWidth: mainLayout.implicitWidth
+    property var selectedSongs: []
 
-    RowLayout {
-        id: mainLayout
-
-        anchors {
-            fill: parent
-            margins: GeminiStyles.tMargin
-        }
-
+    middleContent: RowLayout {
         Items.GToolButton {
-            Layout.preferredWidth: 100
-            Layout.alignment: Qt.AlignRight
-
             text: qsTr("New playlist")
 
             onClicked: root.newPlaylist()
         }
 
         Items.GToolButton {
-            Layout.preferredWidth: 100
-            Layout.alignment: Qt.AlignLeft
-
             text: qsTr("Add songs")
 
             onClicked: root.addSongs()
+        }
+
+        Items.GToolButton {
+            id: removeSelectedSongsToolButton
+
+            text: qsTr("Remove %1 songs").arg(selectedSongs.length)
+
+            onClicked: root.removeSelectedSongs()
+
+            state: "hidden"
+            states: State {
+                name: "hidden"
+                when: !selectedSongs.length
+                PropertyChanges { target: removeSelectedSongsToolButton; opacity: 0; implicitWidth: 0; implicitHeight: 0; }
+            }
+
+            transitions: [
+                Transition {
+                    from: "*"; to: "hidden"
+                    SequentialAnimation {
+                        OpacityAnimator { duration: GeminiStyles.quickAnimation }
+                        NumberAnimation { properties: "implicitWidth, implicitHeight"; duration: GeminiStyles.quickAnimation }
+                    }
+                },
+
+                Transition {
+                    from: "hidden"; to: "*"
+                    SequentialAnimation {
+                        NumberAnimation { properties: "implicitWidth, implicitHeight"; duration: GeminiStyles.quickAnimation }
+                        OpacityAnimator { duration: GeminiStyles.quickAnimation }
+                    }
+                }
+            ]
         }
     }
 }

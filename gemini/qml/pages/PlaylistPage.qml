@@ -13,6 +13,8 @@ GPage {
     id: root
 
     header: PageHeaders.PlaylistPageHeader {
+        selectedSongs: playlistView.selectedSongs
+
         onNewPlaylist: objectController.openDialog(Enums.Dialog.NewPlaylistDialog, {}, function(playlistName){
             dataController.insertData([playlistName], Enums.Data.Playlist)
         })
@@ -29,6 +31,12 @@ GPage {
                     dataController.insertData(Helper.createRelation(sessionController.currentPlaylist.id, songs), Enums.Data.Relations)
                 })
             }
+        }
+
+        onRemoveSelectedSongs: {
+            objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": qsTr("Are you sure you want to delete <b>%1</b> songs?").arg(selectedSongs.length)}, function() {
+                dataController.removeData(selectedSongs, playlistView.allSongs ? Enums.Data.Songs : Enums.Data.Relations)
+            })
         }
     }
 

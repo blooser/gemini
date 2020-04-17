@@ -11,6 +11,7 @@ Item {
     id: root
 
     property alias allSongs: playlistItems.allSongs
+    property alias selectedSongs: playlistSongsView.selectedSongs
 
     Items.GSplitView {
         id: splitView
@@ -29,6 +30,8 @@ Item {
         }
 
         PlaylistSongsView {
+            id: playlistSongsView
+
             allSongs: root.allSongs
 
             SplitView.fillWidth: true
