@@ -22,6 +22,8 @@ public:
 private:
     std::shared_ptr<ModelController> m_modelController;
     std::shared_ptr<FilesController> m_filesController;
+
+    bool alreadyInDatabase(const QUrl &url);
 };
 
 #endif // SONGPROCESS_H

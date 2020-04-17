@@ -33,8 +33,12 @@ QVariantMap SongInsertProcess::modelData(const QVariant &data) const {
 
 void SongInsertProcess::start() {
     auto newUrl = m_filesController->put(inputData().toUrl(), SONGS);
-    if (not newUrl.isEmpty()) {
+    if (not newUrl.isEmpty() and not alreadyInDatabase(newUrl)) {
         m_modelController->appendData(modelData(newUrl), SONGS);
         finishPending();
     }
+}
+
+bool SongInsertProcess::alreadyInDatabase(const QUrl &url) {
+    return m_modelController->contains({{"url", url}}, SONGS);
 }
