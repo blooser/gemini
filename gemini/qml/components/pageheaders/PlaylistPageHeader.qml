@@ -37,7 +37,7 @@ Items.GToolBar {
             state: "hidden"
             states: State {
                 name: "hidden"
-                when: !selectedSongs.length
+                when: !selectedSongs.length || dataController.processing
                 PropertyChanges { target: removeSelectedSongsToolButton; opacity: GeminiStyles.none; implicitWidth: GeminiStyles.none; implicitHeight: GeminiStyles.none; }
             }
 

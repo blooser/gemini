@@ -1,4 +1,5 @@
 import QtQuick 2.14
+import QtQml 2.14
 import QtQuick.Controls 2.14
 
 import com.gemini.common 0.1
@@ -19,8 +20,9 @@ Item {
     implicitHeight: changer.implicitHeight
 
     Binding on selectedSongs {
-        value: changer.currentItem.selectedSongs
-        when: !changer.when // NOTE: When the main item is PlaylistSongs
+        // NOTE: When the main item is PlaylistSongs
+        value: !changer.when ? changer.currentItem.selectedSongs : []
+        restoreMode: Binding.RestoreBindingOrValue
     }
 
     Dynamic.Changer {
