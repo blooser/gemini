@@ -36,7 +36,7 @@ Item {
 
             implicitHeight: 400
 
-            model: playlistModel ? playlistModel : []
+            model: playlistModel
 
             delegate: CurrentPlaylistSwitcherItem {
                 width: playlists.width

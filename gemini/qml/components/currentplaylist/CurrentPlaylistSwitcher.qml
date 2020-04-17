@@ -26,7 +26,5 @@ Item {
         id: playlistSwitcherItems
 
         anchors.fill: parent
-
-        onPlaylistSelected: playlistSwitcherCurrentItem.displayPlaylist = playlistName
     }
 }
