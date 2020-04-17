@@ -28,7 +28,7 @@ Item {
 
             font.family: GeminiStyles.numberFontFamily
             iconSource: "qrc:/icons/music"
-            hiddenOn: (text === "0")
+            hidden: (text === "0")
 
         }
 
@@ -37,7 +37,7 @@ Item {
 
             font.family: GeminiStyles.numberFontFamily
             iconSource: "qrc:/icons/time"
-            hiddenOn: (text === "00:00" || text === "")
+            hidden: (text === "00:00" || text === "")
         }
     }
 }

@@ -7,11 +7,11 @@ import ".." as Components
 Components.Label {
     id: root
 
-    property bool hiddenOn: false
+    property bool hidden: false
 
     states: State {
         name: "hidden"
-        when: root.hiddenOn
+        when: root.hidden
 
         PropertyChanges {
             target: root

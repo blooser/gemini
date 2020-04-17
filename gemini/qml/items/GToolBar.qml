@@ -34,7 +34,7 @@ ToolBar {
 
             Layout.minimumWidth: implicitWidth
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-            Layout.fillWidth: leftContent.data.length
+            Layout.fillWidth: leftContent.visibleChildren.length
         }
 
         Item { // NOTE: Helps to center middle content
@@ -61,7 +61,7 @@ ToolBar {
             id: rightContent
             Layout.minimumWidth: implicitWidth
             Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            Layout.fillWidth: rightContent.data.length
+            Layout.fillWidth: rightContent.visibleChildren.length
         }
     }
 }
