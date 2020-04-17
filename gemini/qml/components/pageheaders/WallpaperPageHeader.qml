@@ -13,47 +13,49 @@ Items.GToolBar {
 
     property var selectedWallpapers: []
 
-    implicitWidth: mainLayout.implicitWidth
+    middleContent: RowLayout {
+        Layout.alignment: Qt.AlignHCenter
 
-    // TODO: Make a special component for these button alignment
-    RowLayout {
-        id: mainLayout
+        Items.GToolButton {
+            text: qsTr("Add wallpapers")
 
-        anchors {
-            fill: parent
-            margins: GeminiStyles.tMargin
+            onClicked: root.addWallpapers()
         }
 
-        RowLayout {
-            Layout.alignment: Qt.AlignHCenter
+        Items.GToolButton {
+            id: removeSelectedWallpapersToolButton
 
-            Items.GToolButton {
-                text: qsTr("Add wallpapers")
+            text: qsTr("Remove %1 wallpapers").arg(selectedWallpapers.length)
 
-                onClicked: root.addWallpapers()
-            }
+            onClicked: root.removeSelectedWallpapers()
 
-            Items.GToolButton {
-                id: removeSelectedWallpapersToolButton
+            state: "hidden"
 
-                text: qsTr("Remove %1 wallpapers").arg(selectedWallpapers.length)
+            states: [
+                State {
+                    name: "hidden"
+                    when: !selectedWallpapers.length
+                    PropertyChanges { target: removeSelectedWallpapersToolButton; implicitWidth: GeminiStyles.none; implicitHeight: GeminiStyles.none; opacity: GeminiStyles.hidden }
+                }
+            ]
 
-                onClicked: root.removeSelectedWallpapers()
-            }
-        }
-    }
+            transitions: [
+                Transition {
+                    from: "hidden"; to: "*"
+                    SequentialAnimation {
+                        NumberAnimation { properties: "implicitWidth, implicitHeight"; duration: GeminiStyles.quickAnimation }
+                        NumberAnimation { property: "opacity"; duration: GeminiStyles.quickAnimation }
+                    }
+                },
 
-    states: [
-        State {
-            when: !selectedWallpapers.length
-            PropertyChanges { target: removeSelectedWallpapersToolButton; implicitWidth: GeminiStyles.none; implicitHeight: GeminiStyles.none; opacity: GeminiStyles.hidden }
-        }
-    ]
-
-    transitions: Transition {
-        ParallelAnimation {
-            NumberAnimation { property: "opacity"; duration: GeminiStyles.quickAnimation }
-            NumberAnimation { properties: "implicitWidth, implicitHeight"; duration: GeminiStyles.quickAnimation }
+                Transition {
+                    from: "*"; to: "hidden"
+                    SequentialAnimation {
+                        NumberAnimation { property: "opacity"; duration: GeminiStyles.quickAnimation }
+                        NumberAnimation { properties: "implicitWidth, implicitHeight"; duration: GeminiStyles.quickAnimation }
+                    }
+                }
+            ]
         }
     }
 }

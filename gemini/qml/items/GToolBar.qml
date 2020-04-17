@@ -37,7 +37,7 @@ ToolBar {
             Layout.fillWidth: leftContent.data.length
         }
 
-        Item {
+        Item { // NOTE: Helps to center middle content
             Layout.minimumWidth: 0
             Layout.fillWidth: true
             Layout.maximumWidth: visible ? Math.max(rightContent.implicitWidth - leftContent.implicitWidth, 0) : 0
@@ -50,7 +50,7 @@ ToolBar {
             Layout.fillWidth: true
         }
 
-        Item {
+        Item { // NOTE: Helps to center middle content
             Layout.minimumWidth: 0
             Layout.fillWidth: true
             Layout.maximumWidth: visible ? Math.max(leftContent.implicitWidth - rightContent.implicitWidth, 0) : 0
