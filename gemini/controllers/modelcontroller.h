@@ -36,12 +36,12 @@ public:
     QVariantList readData(const QByteArray &roleName, Enums::Data data);
     void erase(Enums::Data data);
     bool contains(const QVariantMap &modelData, Enums::Data data);
-    QVariant findBuddy(const QVariantMap &modelData, const QByteArray roleName, Enums::Data type);
+    QVariantList findBuddy(const QVariantMap &modelData, const QByteArray roleName, Enums::Data type, int hints=1);
 
     void setQMLContext(QQmlApplicationEngine &engine);
 
 protected:
-    void tryToUpdatePlaylist(const int id);
+    void tryToUpdatePlaylist(const QVariantMap &modelData);
 
 private:
     QSqlDatabase m_database;

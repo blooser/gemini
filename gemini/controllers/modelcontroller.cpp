@@ -32,7 +32,7 @@ void ModelController::appendData(const QVariantMap &data, Enums::Data type) {
             break;
         case RELATIONS:
             m_relationModel->append(data);
-            tryToUpdatePlaylist(data["playlist"].toInt());
+            tryToUpdatePlaylist(data);
             break;
         case WALLPAPERS:
             m_wallpaperModel->append(data);
@@ -126,7 +126,7 @@ void ModelController::removeData(const QVariantMap &modelData, Enums::Data type)
             break;
         case RELATIONS:
             m_relationModel->remove(modelData);
-            tryToUpdatePlaylist(modelData["playlist"].toInt());
+            tryToUpdatePlaylist(modelData);
             break;
         case WALLPAPERS:
             m_wallpaperModel->remove(modelData);
@@ -162,34 +162,43 @@ QVariantList ModelController::readData(const QByteArray &roleName, Enums::Data d
     return QVariantList();
 }
 
-QVariant ModelController::findBuddy(const QVariantMap &modelData, const QByteArray roleName, Enums::Data type) {
+QVariantList ModelController::findBuddy(const QVariantMap &modelData, const QByteArray roleName, Enums::Data type, int hints) {
     switch (type) {
         case SONGS:
-            return m_songModel->findBuddy(modelData, roleName);
+            return m_songModel->findBuddy(modelData, roleName, hints);
         case PLAYLIST:
-            return m_playlistModel->findBuddy(modelData, roleName);
+            return m_playlistModel->findBuddy(modelData, roleName, hints);
         case WALLPAPERS:
-            return m_wallpaperModel->findBuddy(modelData, roleName);
+            return m_wallpaperModel->findBuddy(modelData, roleName, hints);
         case RELATIONS:
             qCWarning(modelController) << "findBuddy: Relations model does not support this operation!";
-            return QVariant();
+            return QVariantList();
         case PENDING:
             qCWarning(modelController) << "findBuddy: Pending model does not support this operation!";
-            return QVariant();
+            return QVariantList();
         case UNKNOWN:
         default:
             qCWarning(modelController) << "findBuddy: Unknown data type!";
-            return QVariant();
+            return QVariantList();
             break;
     }
 }
 
-void ModelController::tryToUpdatePlaylist(const int id) {
-    auto playlist = m_playlistModel->find({{"id", id}}, 1);
+void ModelController::tryToUpdatePlaylist(const QVariantMap &modelData) {
+    if (modelData.contains("playlist")) {
+        const int id = modelData["playlist"].toInt();
+        auto playlist = m_playlistModel->find({{"id", id}}, 1);
 
-    if (not playlist.isEmpty()) {
-        if (m_playlistModel->selectRow(playlist.first().row())) {
-            qCInfo(modelController) << "Successfully updated playlist with id:" << id;
+        if (not playlist.isEmpty()) {
+            if (m_playlistModel->selectRow(playlist.first().row())) {
+                qCInfo(modelController) << "Updated playlist with id:" << id;
+            }
+        }
+    }
+
+    else if (modelData.contains("song")) {
+        for (int row=0; row<m_playlistModel->rowCount(); ++row) {
+            m_playlistModel->selectRow(row);
         }
     }
 }
