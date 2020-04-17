@@ -33,6 +33,7 @@ private slots:
     void testModelAppendValues();
     void testModelFindValues();
     void testModelFindBuddy();
+    void testModelFindBuddyWithHintsEqMinusOne();
     void testModelRemoveValue();
     void testModelEraseAllData();
     void testModelReadSelectedData();
@@ -224,8 +225,47 @@ void ModelsTest::testModelFindBuddy() {
     };
 
     auto buddy = songModel.findBuddy(searchModelData, "url");
-    QVERIFY(buddy.isValid());
-    QCOMPARE(buddy.toString(), QStringLiteral("file:///foo/bar/test3"));
+    QVERIFY(not buddy.isEmpty());
+    QCOMPARE(buddy.at(0).toString(), QStringLiteral("file:///foo/bar/test3"));
+}
+
+void ModelsTest::testModelFindBuddyWithHintsEqMinusOne() {
+    RelationModel relationModel(db);
+    QCOMPARE(relationModel.tableName(), QStringLiteral("relations"));
+
+    QVector<QVariantMap> modelDatas = {
+        {
+            {"playlist", 1},
+            {"song", 1}
+        },
+
+        {
+            {"playlist", 2},
+            {"song", 1}
+        },
+
+        {
+            {"playlist", 3},
+            {"song", 1}
+        }
+    };
+
+    for (const auto &modelData : qAsConst(modelDatas)) {
+        relationModel.append(modelData);
+    }
+
+    QCOMPARE(relationModel.rowCount(), 3);
+
+    QVariantMap searchBuddyModelData = {
+        {"song", 1}
+    };
+
+    auto buddies = relationModel.findBuddy(searchBuddyModelData, "playlist", -1);
+    QCOMPARE(buddies.size(), 3);
+
+    for (int i=0; i<modelDatas.size(); ++i) {
+        QCOMPARE(buddies.at(0), modelDatas.at(0)["playlist"]);
+    }
 }
 
 void ModelsTest::testModelRemoveValue() {
