@@ -21,7 +21,7 @@ CircleProgressBar {
         font {
             pixelSize: 24
             bold: true
-            family: GeminiStyles.audioProgressBarNumberFontFamily
+            family: GeminiStyles.numberFontFamily
         }
     }
 

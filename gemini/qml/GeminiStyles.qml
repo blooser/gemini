@@ -23,13 +23,14 @@ QtObject {
 
     // Font
     readonly property int tFontPixelSize: 12
+    readonly property int sFontPixelSize: 14
     readonly property int nFontPixelSize: 16
     readonly property int bFontPixelSize: 20
     readonly property int hFontPixelSize: 24
 
     readonly property int summaryNumberFontPixelSize: 72
 
-    readonly property string audioProgressBarNumberFontFamily: "Gurmukhi"
+    readonly property string numberFontFamily: "Gurmukhi"
 
     // Colors
     readonly property color geminiBaseColor: "#001a33"

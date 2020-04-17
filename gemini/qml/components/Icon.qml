@@ -8,7 +8,7 @@ Rectangle {
     property alias iconSource: image.source
 
     radius: GeminiStyles.tMargin
-    color: GeminiStyles.highlightColor
+    color: GeminiStyles.geminiSecondColor
 
     implicitWidth: image.implicitWidth
     implicitHeight: image.implicitHeight

@@ -5,6 +5,7 @@ import com.gemini.helper 0.1
 import com.gemini.tools 0.1
 import com.gemini.enums 0.1
 import com.gemini.styles 0.1
+import com.gemini.common 0.1
 
 import ".." as Components
 import "../../items" as Items
@@ -33,6 +34,7 @@ Item {
 
             text: qsTr("All Songs")
             removable: false
+            info.songs: songModel.size
 
             onClicked: root.allSongs = true
         }
@@ -52,6 +54,10 @@ Item {
             delegate: PlaylistItem {
                 width: items.width
                 text: name
+
+                info.songs: songs
+                info.duration: Utility.formatTime(duration * 1000, "mm:ss")
+
                 highlighted: (id === sessionController.currentPlaylist.id && !root.allSongs)
 
                 onClicked: {

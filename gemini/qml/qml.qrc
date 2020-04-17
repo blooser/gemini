@@ -86,6 +86,9 @@
         <file>items/headers/TextHeader.qml</file>
         <file>components/SongInfo.qml</file>
         <file>components/wallpapers/WallpaperItems.qml</file>
-        <file>components/wallpapers/WallpaperSelection.qml</file> 
+        <file>components/wallpapers/WallpaperSelection.qml</file>
+        <file>components/Label.qml</file>
+        <file>components/playlist/PlaylistInfo.qml</file>
+        <file>components/playlist/PlaylistLabel.qml</file>
     </qresource>
 </RCC>

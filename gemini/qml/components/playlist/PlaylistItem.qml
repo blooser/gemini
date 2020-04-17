@@ -5,11 +5,15 @@ import QtQuick.Controls 2.14
 import com.gemini.styles 0.1
 
 import "../../items" as Items
+import ".." as Components
 
 ItemDelegate {
     id: root
 
     property bool removable: true
+
+    property alias info: playlistInfo
+
     signal remove()
 
     implicitWidth: 200
@@ -24,6 +28,10 @@ ItemDelegate {
             text: root.text
             font: root.font
             horizontalAlignment: Text.AlignLeft
+        }
+
+        PlaylistInfo {
+            id: playlistInfo
         }
 
         Items.GImageButton {
