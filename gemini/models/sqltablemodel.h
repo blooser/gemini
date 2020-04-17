@@ -27,7 +27,7 @@ public:
     void updateData(const QVariantMap &searechModelData, const QVariantMap &modelData);
     bool erase();
 
-    QVariant findBuddy(const QVariantMap &modelData, const QByteArray &roleName);
+    QVariantList findBuddy(const QVariantMap &modelData, const QByteArray &roleName, int hints=1);
     QModelIndexList find(const QVariantMap &modelData, int hints=-1);
 
     int roleShift(const int column) const;

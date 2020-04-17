@@ -34,7 +34,7 @@ QVariantMap RelationInsertProcess::modelData(const QVariant &data) const {
 QVector<int> RelationInsertProcess::collectSongIds(const QVector<QUrl> &songUrls) const {
     QVector<int> songIds;
     for (const auto &songUrl : songUrls) {
-        auto songId = m_modelController->findBuddy({{"url", songUrl}}, "id", SONGS);
+        auto songId = m_modelController->findBuddy({{"url", songUrl}}, "id", SONGS).first(); // NOTE: Default hints is 1, so, there will be returned only one element and vice versa
         if (songId.isValid() && songId.toInt() != 0) {
             songIds.append(songId.toInt());
         }

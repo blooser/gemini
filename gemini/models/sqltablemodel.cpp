@@ -91,17 +91,16 @@ QModelIndexList SqlTableModel::find(const QVariantMap &modelData, int hints) {
     return foundIndexes;
 }
 
-QVariant SqlTableModel::findBuddy(const QVariantMap &modelData, const QByteArray &roleName) {
-    auto indexes = find(modelData, 1);
+QVariantList SqlTableModel::findBuddy(const QVariantMap &modelData, const QByteArray &roleName, int hints) {
+    auto indexes = find(modelData, hints);
+    qDebug() << indexes;
 
-    if (!indexes.isEmpty()) {
-        auto back = indexes.back();
-        if (back.isValid()) {
-            return data(back, roleNames().key(roleName));
-        }
+    QVariantList buddies;
+    for (const auto &index : qAsConst(indexes)) {
+        buddies.append(data(createIndex(index.row(), 0), roleNames().key(roleName)));
     }
 
-    return QVariant();
+    return buddies;
 }
 
 void SqlTableModel::append(const QVariantMap &modelData) {
