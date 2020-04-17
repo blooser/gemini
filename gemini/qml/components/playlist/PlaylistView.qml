@@ -28,7 +28,7 @@ Item {
             SplitView.preferredWidth: 250
         }
 
-        PlaylistSongs {            
+        PlaylistSongsView {
             allSongs: root.allSongs
 
             SplitView.fillWidth: true

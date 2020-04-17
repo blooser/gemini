@@ -13,50 +13,37 @@ Item {
 
     property bool allSongs: false
 
-    implicitWidth: changer.implicitWidth
-    implicitHeight: changer.implicitHeight
+    implicitWidth: songs.implicitWidth
+    implicitHeight: songs.implicitHeight
 
-    Dynamic.Changer {
-        id: changer
+    ListView {
+        id: songs
 
-        anchors {
-            fill: parent
-            leftMargin: GeminiStyles.tMargin
-        }
+        anchors.fill: parent
 
-        main: ListView {
-            id: songs
+        clip: true
+        spacing: GeminiStyles.tMargin
+        model: root.allSongs ? songModel : songsInRelations
 
-            clip: true
-            spacing: GeminiStyles.tMargin
-            model: root.allSongs ? songModel : songsInRelations
+        delegate: PlaylistSong {
+            width: songs.width
+            playing: (!root.allSongs && id === sessionController.currentSong.id && sessionController.currentSong.playlist.id === sessionController.currentPlaylist.id)
 
-            delegate: PlaylistSong {
-                width: songs.width
-                playing: (!root.allSongs && id === sessionController.currentSong.id && sessionController.currentSong.playlist.id === sessionController.currentPlaylist.id)
+            songTitle: title
+            songDuration: Utility.formatTime(duration * 1000, "mm:ss")
 
-                songTitle: title
-                songDuration: Utility.formatTime(duration * 1000, "mm:ss")
+            onRemove: {
+                const message = allSongs ? qsTr("Are you sure you want to delete <b>%1</b> song?").arg(title)
+                                         : qsTr("Are you sure you want to delete <b>%1</b> song from <b>%2</b> playlist?").arg(title).arg(sessionController.currentPlaylist.name)
 
-                onRemove: {
-                    const message = allSongs ? qsTr("Are you sure you want to delete <b>%1</b> song?").arg(title)
-                                             : qsTr("Are you sure you want to delete <b>%1</b> song from <b>%2</b> playlist?").arg(title).arg(sessionController.currentPlaylist.name)
-
-                    objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": message}, function(){
-                        if (allSongs) {
-                            dataController.removeData([{"id": id, "url": url}], Enums.Data.Songs)
-                        } else {
-                            dataController.removeData([{"playlist": sessionController.currentPlaylist.id, "song": id}], Enums.Data.Relations)
-                        }
-                    })
-                }
+                objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": message}, function() {
+                    if (allSongs) {
+                        dataController.removeData([{"id": id, "url": url}], Enums.Data.Songs)
+                    } else {
+                        dataController.removeData([{"playlist": sessionController.currentPlaylist.id, "song": id}], Enums.Data.Relations)
+                    }
+                })
             }
         }
-
-        replace:  Components.TileText {
-            text: qsTr("Try to add a new songs")
-        }
-
-        when: (songModel.size === GeminiStyles.empty)
     }
 }

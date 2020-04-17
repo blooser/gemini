@@ -90,5 +90,6 @@
         <file>components/Label.qml</file>
         <file>components/playlist/PlaylistInfo.qml</file>
         <file>components/playlist/PlaylistLabel.qml</file>
+        <file>components/playlist/PlaylistSongsView.qml</file>
     </qresource>
 </RCC>
