@@ -9,13 +9,16 @@ Item {
     property Component replace
     property bool when: false
 
+    state: "main"
     states: [
         State {
+            name: "main"
             when: !root.when
             PropertyChanges { target: loader; sourceComponent: root.main }
         },
 
         State {
+            name: "replace"
             when: root.when
             PropertyChanges { target: loader; sourceComponent: root.replace }
         }
