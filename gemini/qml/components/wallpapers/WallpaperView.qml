@@ -1,4 +1,5 @@
 import QtQuick 2.14
+import QtQml 2.14
 import QtQuick.Layouts 1.12
 
 import com.gemini.enums 0.1
@@ -26,8 +27,8 @@ Rectangle {
     }
 
     Binding on selectedWallpapers {
-        value: changer.currentItem.selectedWallpapers
-        when: !changer.when // When changer has main item which is WallpaperItems
+        value: !changer.when ? changer.currentItem.selectedWallpapers : []
+        restoreMode: Binding.RestoreBindingOrValue
     }
 
     Dynamic.Changer {

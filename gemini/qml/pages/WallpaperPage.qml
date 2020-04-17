@@ -23,6 +23,7 @@ GPage {
 
         onRemoveSelectedWallpapers: objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": qsTr("Are you sure you want to delete %1 wallpapers?").arg(selectedWallpapers.length)}, function(){
             dataController.removeData(selectedWallpapers, Enums.Data.Wallpapers)
+            selectedWallpapers = [] // NOTE: This will take effects in WallpaperItems
         })
     }
 

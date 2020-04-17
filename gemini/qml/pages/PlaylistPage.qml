@@ -36,6 +36,7 @@ GPage {
         onRemoveSelectedSongs: {
             objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": qsTr("Are you sure you want to delete <b>%1</b> songs?").arg(selectedSongs.length)}, function() {
                 dataController.removeData(selectedSongs, playlistView.allSongs ? Enums.Data.Songs : Enums.Data.Relations)
+                selectedSongs = [] // NOTE: This will take effects in PlaylistSongs
             })
         }
     }
