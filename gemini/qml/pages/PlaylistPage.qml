@@ -27,7 +27,7 @@ GPage {
                     dataController.insertData(Helper.toList(files), Enums.Data.Songs)
                 })
             } else {
-                objectController.openDialog(Enums.Dialog.SongsDialog, {"headerText": qsTr("Add sngs to <b>%1</b> playlist").arg(sessionController.currentPlaylist.name) }, function(songs) {
+                objectController.openDialog(Enums.Dialog.SongsDialog, {"headerText": qsTr("Add songs to <b>%1</b> playlist").arg(sessionController.currentPlaylist.name) }, function(songs) {
                     dataController.insertData(Helper.createRelation(sessionController.currentPlaylist.id, songs), Enums.Data.Relations)
                 })
             }
