@@ -16,8 +16,6 @@ GDialog {
     dialog: Enums.Dialog.SwitchDialog
     headerText: qsTr("Switch page")
 
-    standardButtons: Dialog.NuButton
-
     ColumnLayout {
         id: mainLayout
 
