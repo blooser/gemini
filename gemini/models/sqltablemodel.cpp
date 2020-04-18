@@ -93,7 +93,6 @@ QModelIndexList SqlTableModel::find(const QVariantMap &modelData, int hints) {
 
 QVariantList SqlTableModel::findBuddy(const QVariantMap &modelData, const QByteArray &roleName, int hints) {
     auto indexes = find(modelData, hints);
-    qDebug() << indexes;
 
     QVariantList buddies;
     for (const auto &index : qAsConst(indexes)) {
