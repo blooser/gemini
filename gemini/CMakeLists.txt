@@ -104,6 +104,8 @@ set (TOOLS_FILES
     tools/player.h
     tools/playlist.cpp
     tools/playlist.h
+    tools/stringfilterproxymodel.h
+    tools/stringfilterproxymodel.cpp
 )
 
 set (AUDIO_FILES

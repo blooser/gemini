@@ -12,6 +12,7 @@
 #include "tools/player.h"
 #include "tools/circleprogressbar.h"
 #include "tools/playlist.h"
+#include "tools/stringfilterproxymodel.h"
 
 #include "common/enums.h"
 #include "common/utility.h"
@@ -48,6 +49,7 @@ int main(int argc, char *argv[]) {
     qmlRegisterType<Player>("com.gemini.tools", 0, 1, "Player");
     qmlRegisterType<CircleProgressBar>("com.gemini.tools", 0, 1, "CircleProgressBar");
     qmlRegisterType<Playlist>("com.gemini.tools", 0, 1, "Playlist");
+    qmlRegisterType<StringFilterProxyModel>("com.gemini.tools", 0, 1, "StringFilterProxyModel");
 
     ObjectController m_objectController;
     SessionController m_sessionController;
