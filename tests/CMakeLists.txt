@@ -12,6 +12,7 @@ add_subdirectory (quicktest_circleprogressbar)
 add_subdirectory (quicktest_picker)
 add_subdirectory (quicktest_playlist)
 add_subdirectory (quicktest_sessioncontroller)
+add_subdirectory (quicktest_stringfilterproxymodel)
 
 # Qt test
 add_subdirectory (test_database)
