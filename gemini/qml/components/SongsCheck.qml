@@ -30,7 +30,7 @@ Item {
             }
 
             Items.GButton {
-                text: qsTr("Sellect all")
+                text: qsTr("Select all")
                 font {
                     capitalization: Font.MixedCase
                     pixelSize: GeminiStyles.sFontPixelSize
