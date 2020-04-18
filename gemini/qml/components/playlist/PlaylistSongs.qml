@@ -42,7 +42,7 @@ Item {
             songTitle: title
             songDuration: Utility.formatTime(duration * 1000, "mm:ss")
 
-            property int indexInSelectedSongs: selectedSongs.indexOf((selectedSongs.find(song => (allSongs) ? song.id === id : song.song === id)))
+            property int indexInSelectedSongs: selectedSongs.findIndex(song => (allSongs) ? song.id === id : song.song === id)
             property bool selected: (indexInSelectedSongs !== -1)
 
             border.color: selected ? GeminiStyles.highlightColor : GeminiStyles.blank
