@@ -81,7 +81,7 @@ Item {
                     root.selectedSongsChanged()
                 }
 
-                Component.onCompleted: {
+                Component.onCompleted: { // NOTE: Filtering causes that event
                     if (indexInSelectedSongs !== -1) {
                         checked = true
                     }
