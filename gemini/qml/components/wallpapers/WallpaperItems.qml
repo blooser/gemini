@@ -18,6 +18,12 @@ GridView {
     currentIndex: -1
     highlight: Components.Highlight {}
 
+    Connections {
+        target: sessionController
+
+        onClearSelection: selectedWallpapers = []
+    }
+
     delegate: WallpaperItem {
         width: 150; height: 150
 

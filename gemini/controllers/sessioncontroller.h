@@ -79,6 +79,9 @@ signals:
     void currentWallpaperChanged(const QUrl &wallpaper);
     void currentPageIndexChanged(const int index);
 
+    // Clean up
+    void clearSelection();
+
     // SwipeView
     void swipeLeft();
     void swipeRight();

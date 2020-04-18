@@ -24,6 +24,7 @@ Item {
         target: sessionController
 
         onCurrentPlaylistChanged: selectedSongs = []
+        onClearSelection: selectedSongs = []
     }
 
     ListView {
