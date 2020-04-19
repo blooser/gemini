@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     app.setOrganizationName(OrganizationName);
     app.setOrganizationDomain(OrganizationDomain);
 
-    int fontId = QFontDatabase::addApplicationFont(":/fonts/arbutus");
+    int fontId = QFontDatabase::addApplicationFont(":/fonts/sen");
     app.setFont(QFont(QFontDatabase::applicationFontFamilies(fontId).at(0)));
 
     qmlRegisterUncreatableMetaObject(Enums::staticMetaObject, "com.gemini.enums", 0, 1, "Enums", "Could not create enums!");

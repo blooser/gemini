@@ -1,6 +1,6 @@
 <RCC>
     <qresource prefix="/fonts">
-        <file alias="arbutus">fonts/ArbutusSlab-Regular.ttf</file>
+        <file alias="sen">fonts/Sen-Regular.ttf</file>
     </qresource>
     <qresource prefix="/icons">
         <file alias="images">svg/images.svg</file>
