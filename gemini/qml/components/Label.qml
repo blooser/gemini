@@ -38,10 +38,7 @@ Rectangle {
         Items.GText {
             id: tileText
 
-            font {
-                pixelSize: GeminiStyles.sFontPixelSize
-                family: GeminiStyles.numberFontFamily
-            }
+            font.pixelSize: GeminiStyles.sFontPixelSize
 
             horizontalAlignment: Text.AlignLeft
         }

@@ -4,6 +4,7 @@ import QtQuick.Layouts 1.12
 import com.gemini.styles 0.1
 
 import "../../items" as Items
+import ".." as Components
 
 Items.GToolBar {
     id: root
@@ -54,6 +55,16 @@ Items.GToolBar {
                     }
                 }
             ]
+        }
+    }
+
+    rightContent: Components.Label {
+        iconSource: "qrc:/icons/image"
+        text: wallpaperModel.size
+        opacity: wallpaperModel.size ? GeminiStyles.opacityVisible : GeminiStyles.opacityHidden
+
+        Behavior on opacity {
+            OpacityAnimator { duration: GeminiStyles.quickAnimation }
         }
     }
 }
