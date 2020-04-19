@@ -15,7 +15,7 @@ option (ERASE_DATA "Erase whole saved data (It will erase on every application s
 option (USE_STRINGBUILDER "Use fast concatenation" OFF)
 option (QML_DEBUG "Enable QML debug mode" OFF)
 
-execute_process (COMMAND git rev-parse --verify --short HEAD OUTPUT_VARIABLE REVISION)
+execute_process (COMMAND git "rev-parse --verify --short HEAD" OUTPUT_VARIABLE REVISION)
 
 add_compile_definitions (
     ProjectName="${PROJECT_NAME}"
