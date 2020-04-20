@@ -41,7 +41,7 @@ public:
     void setQMLContext(QQmlApplicationEngine &engine);
 
 protected:
-    void tryToUpdatePlaylist(const QVariantMap &modelData);
+    void refresh(Enums::Data data);
 
 private:
     QSqlDatabase m_database;

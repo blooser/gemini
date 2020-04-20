@@ -32,7 +32,7 @@ void ModelController::appendData(const QVariantMap &data, Enums::Data type) {
             break;
         case RELATIONS:
             m_relationModel->append(data);
-            tryToUpdatePlaylist(data);
+            refresh(PLAYLIST);
             break;
         case WALLPAPERS:
             m_wallpaperModel->append(data);
@@ -120,13 +120,14 @@ void ModelController::removeData(const QVariantMap &modelData, Enums::Data type)
     switch (type) {
         case SONGS:
             m_songModel->remove(modelData);
+            refresh(PLAYLIST);
             break;
         case PLAYLIST:
             m_playlistModel->remove(modelData);
             break;
         case RELATIONS:
             m_relationModel->remove(modelData);
-            tryToUpdatePlaylist(modelData);
+            refresh(PLAYLIST);
             break;
         case WALLPAPERS:
             m_wallpaperModel->remove(modelData);
@@ -184,22 +185,33 @@ QVariantList ModelController::findBuddy(const QVariantMap &modelData, const QByt
     }
 }
 
-void ModelController::tryToUpdatePlaylist(const QVariantMap &modelData) {
-    if (modelData.contains("playlist")) {
-        const int id = modelData["playlist"].toInt();
-        auto playlist = m_playlistModel->find({{"id", id}}, 1);
-
-        if (not playlist.isEmpty()) {
-            if (m_playlistModel->selectRow(playlist.first().row())) {
-                qCInfo(modelController) << "Updated playlist with id:" << id;
-            }
+void ModelController::refresh(Enums::Data data) {
+    auto selectRows = [](auto model) -> void {
+        for (int row=0; row<model->rowCount(); ++row) {
+            model->selectRow(row);
         }
-    }
+    };
 
-    else if (modelData.contains("song")) {
-        for (int row=0; row<m_playlistModel->rowCount(); ++row) {
-            m_playlistModel->selectRow(row);
-        }
+    switch (data) {
+        case SONGS:
+            selectRows(m_songModel);
+            break;
+        case PLAYLIST:
+            selectRows(m_playlistModel);
+            break;
+        case WALLPAPERS:
+            selectRows(m_wallpaperModel);
+            break;
+        case RELATIONS:
+            selectRows(m_relationModel);
+            break;
+        case PENDING:
+            selectRows(m_pendingModel);
+            break;
+        case UNKNOWN:
+        default:
+            qCWarning(modelController) << "refresh: Unknown data type!";
+            break;
     }
 }
 
