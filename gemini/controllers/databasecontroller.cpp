@@ -63,6 +63,10 @@ bool DatabaseController::openDatabase() {
 }
 
 void DatabaseController::fillDatabase() {
+    for (auto &pragma : database::Pragmas) {
+        pragma(m_database);
+    }
+
     for (auto &table : database::Tables) {
         table(m_database);
     }

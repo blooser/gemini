@@ -10,6 +10,10 @@
 
 namespace database {
 
+extern const QVector<std::function<bool (const QSqlDatabase&)>> Pragmas {
+    std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("PRAGMA recursive_triggers=1;"))
+};
+
 extern const QVector<std::function<bool (const QSqlDatabase&)>> Tables {
         std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TABLE wallpapers ("
                                                                                                                                      "`id` INTEGER PRIMARY KEY,"
@@ -50,16 +54,21 @@ extern const QVector<std::function<bool (const QSqlDatabase&)>> Tables {
 
 extern const QVector<std::function<bool (const QSqlDatabase&)>> Triggers {
         std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TRIGGER updateplaylistoninsert AFTER INSERT ON relations"
-                                                                                                                                     " begin"
+                                                                                                                                     " BEGIN"
                                                                                                                                      " UPDATE playlists set songs = (SELECT COUNT(*) FROM relations where playlist = new.playlist) where id = new.playlist;"
                                                                                                                                      " UPDATE playlists set duration = (SELECT SUM(duration) FROM songs where id IN (select song from relations where playlist = new.playlist)) where id = new.playlist;"
-                                                                                                                                     " end;")),
+                                                                                                                                     " END;")),
 
         std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TRIGGER updateplaylistondelete AFTER DELETE ON relations"
-                                                                                                                                     " begin"
+                                                                                                                                     " BEGIN"
                                                                                                                                      " UPDATE playlists set songs = (SELECT COUNT(*) FROM relations where playlist = old.playlist) where id = old.playlist;"
                                                                                                                                      " UPDATE playlists set duration = (SELECT SUM(duration) FROM songs where id IN (select song from relations where playlist = old.playlist)) where id = old.playlist;"
-                                                                                                                                     " end;"))
+                                                                                                                                     " END;")),
+
+        std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TRIGGER deletefromrelations AFTER DELETE ON songs"
+                                                                                                                                     " BEGIN"
+                                                                                                                                     " DELETE FROM relations where song = old.id;"
+                                                                                                                                     " END;"))
 };
 
 }

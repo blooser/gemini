@@ -132,6 +132,10 @@ void ProcessesTest::init() {
         QVERIFY(db.tables().contains(table));
     }
 
+    for (const auto &trigger : database::Triggers) {
+        trigger(db);
+    }
+
     modelController.reset(new ModelController(db));
     QVERIFY(modelController);
 
