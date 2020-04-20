@@ -310,10 +310,12 @@ void ModelsTest::testModelEraseAllData() {
     QVector<QVariantMap> modelDatas = {
         {
            { "url", "file:///foo/bar/test1" },
+           { "name", "test1" },
            { "done", 1 }
         },
         {
            { "url", "file:///foo/bar/test2" },
+           { "name", "test2" },
            { "done", 1 }
         },
     };

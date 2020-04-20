@@ -25,7 +25,7 @@ Item {
         delegate: PendingItem {
             width: pendingView.width
 
-            text: url
+            text: name
             pending: !done
             textColor: done ? GeminiStyles.highlightColor : GeminiStyles.geminiTextBaseColor
 

@@ -36,7 +36,11 @@ Item {
 
             Layout.fillWidth: true
 
-            font.pixelSize: GeminiStyles.bFontPixelSize
+            font {
+                pixelSize: GeminiStyles.bFontPixelSize
+                bold: true
+            }
+
             horizontalAlignment: Text.AlignLeft
             elide: Text.ElideLeft
         }
