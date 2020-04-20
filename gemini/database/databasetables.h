@@ -48,6 +48,7 @@ extern const QVector<std::function<bool (const QSqlDatabase&)>> Tables {
 
         std::bind(qOverload<const QSqlDatabase &, const QLatin1String &>(&database::core::run), std::placeholders::_1, QLatin1String("CREATE TABLE pending ("
                                                                                                                                      "`url` TEXT NOT NULL UNIQUE,"
+                                                                                                                                     "`name` TEXT NOT NULL,"
                                                                                                                                      "`done` INTEGER DEFAULT 0"
                                                                                                                                      ")"))
     };

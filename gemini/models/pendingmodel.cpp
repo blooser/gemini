@@ -2,11 +2,13 @@
 
 const QHash<int, QByteArray> PendingModel::ROLE_NAMES {
     { Column::Url, QByteArrayLiteral("url") },
+    { Column::Name, QByteArrayLiteral("name") },
     { Column::Done, QByteArrayLiteral("done") }
 };
 
 const QHash<int, QMetaType::Type> PendingModel::DATA_TYPES {
     { Column::Url, QMetaType::QString },
+    { Column::Name, QMetaType::QString },
     { Column::Done, QMetaType::Bool }
 };
 

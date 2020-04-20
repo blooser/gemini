@@ -20,6 +20,7 @@ QVariantMap PendableProcess::pendingModelData() const {
 QVariantMap PendableProcess::pendingFinishedModelData() const {
     return {
         { "url", inputData().toUrl() },
+        { "name", inputData().toUrl().fileName() },
         { "done", DONE }
     };
 }
