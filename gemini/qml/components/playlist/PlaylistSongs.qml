@@ -50,7 +50,7 @@ Item {
 
             onClicked: {
                 if (!selected) {
-                    selectedSongs.push(allSongs ? {"id": id} : {"playlist": sessionController.currentPlaylist.id, "song": id})
+                    selectedSongs.push(allSongs ? {"id": id, "url": url} : {"playlist": sessionController.currentPlaylist.id, "song": id})
                 } else {
                     selectedSongs.splice(indexInSelectedSongs, 1)
                 }
