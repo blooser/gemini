@@ -49,6 +49,7 @@ ComboBox {
 
         contentItem: ListView {
             clip: true
+            interactive: false
             implicitHeight: contentHeight
             model: root.delegateModel
             currentIndex: root.highlightedIndex

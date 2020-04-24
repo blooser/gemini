@@ -14,6 +14,7 @@ Item {
     ListView {
         id: pendingView
 
+        interactive: false
         clip: true
         anchors {
             fill: parent

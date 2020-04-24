@@ -14,6 +14,7 @@ Item {
 
         anchors.fill: parent
 
+        interactive: false
         clip: true
         spacing: GeminiStyles.bMargin
 

@@ -32,6 +32,7 @@ Item {
 
         anchors.fill: parent
 
+        interactive: false
         clip: true
         spacing: GeminiStyles.tMargin
         model: root.allSongs ? songModel : songsInRelations

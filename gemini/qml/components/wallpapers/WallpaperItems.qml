@@ -11,6 +11,7 @@ GridView {
 
     property var selectedWallpapers: []
 
+    interactive: false
     model: wallpaperModel
 
     cellWidth: 180; cellHeight: 180

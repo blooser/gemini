@@ -46,6 +46,7 @@ Item {
             Layout.fillHeight: true
             Layout.rightMargin: GeminiStyles.tMargin
 
+            interactive: false
             clip: true
             model: playlistModel
 

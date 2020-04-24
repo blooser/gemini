@@ -45,6 +45,7 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
+            interactive: false
             clip: true
 
             function selectAll() {

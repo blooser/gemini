@@ -16,6 +16,7 @@ Item {
 
         anchors.fill: parent
 
+        interactive: false
         model: songsInRelations
 
         delegate: CurrentPlaylistSong {
