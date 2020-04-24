@@ -18,6 +18,8 @@ void Player::setupConnections() {
 
     connect(&m_vlcPlayer, &VlcPlayer::timeChanged,
             this, &Player::timeChanged, Qt::QueuedConnection);
+    connect(&m_vlcPlayer, &VlcPlayer::durationChanged,
+            this, &Player::durationChanged, Qt::QueuedConnection);
     connect(&m_vlcPlayer, &VlcPlayer::stateChanged,
             this, &Player::stateChanged, Qt::QueuedConnection);
     connect(&m_vlcPlayer, &VlcPlayer::muteChanged,

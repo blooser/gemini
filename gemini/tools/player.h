@@ -31,7 +31,7 @@ class Player : public QObject,
     Q_PROPERTY(int time READ time
                WRITE setTime NOTIFY timeChanged)
     Q_PROPERTY(int duration READ duration
-               NOTIFY stateChanged)
+               NOTIFY durationChanged)
     Q_PROPERTY(bool muted READ muted
                WRITE setMute NOTIFY muteChanged)
     Q_PROPERTY(bool hasAudio READ hasAudio
@@ -82,6 +82,7 @@ signals:
 
     void volumeChanged();
     void timeChanged();
+    void durationChanged();
     void muteChanged();
     void stateChanged();
     void mediaEnd();

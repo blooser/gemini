@@ -25,8 +25,8 @@ public:
 signals:
      void muteChanged();
      void timeChanged();
-     void volumeChanged();
      void durationChanged();
+     void volumeChanged();
      void stateChanged();
      void mediaEnd();
 

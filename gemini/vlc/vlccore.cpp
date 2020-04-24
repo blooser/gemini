@@ -35,6 +35,9 @@ void VlcCore::listen(const libvlc_event_t *event, void *data) {
             case libvlc_MediaPlayerTimeChanged:
                 vlcCore->timeChanged();
                 break;
+            case libvlc_MediaPlayerLengthChanged:
+                vlcCore->durationChanged();
+                break;
             case libvlc_MediaPlayerMediaChanged:
             case libvlc_MediaPlayerPlaying:
             case libvlc_MediaPlayerPaused:
@@ -72,6 +75,7 @@ void VlcCore::listenEvents() {
             case libvlc_MediaPlayerStopped:
             case libvlc_MediaPlayerPaused:
             case libvlc_MediaPlayerTimeChanged:
+            case libvlc_MediaPlayerLengthChanged:
             case libvlc_MediaPlayerEndReached:
                 libvlc_event_attach(eventManager, event, &VlcCore::listen, this);
                 break;
