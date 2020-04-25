@@ -6,10 +6,14 @@ import com.gemini.styles 0.1
 SpinBox {
     id: root
 
+    property var display: function(value) {
+        return root.textFromValue(value, root.locale)
+    }
+
     contentItem: TextInput {
         z: 2
         font: root.font
-        text: root.textFromValue(root.value, root.locale)
+        text: display(root.value)
         color: GeminiStyles.geminiTextBaseColor
         horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter
@@ -23,7 +27,7 @@ SpinBox {
         height: parent.height
         implicitWidth: 40
         implicitHeight: 40
-        color: root.up.pressed ? GeminiStyles.geminiThirdColor : GeminiStyles.geminiSecondColor
+        color: root.up.pressed ? GeminiStyles.highlightColor : GeminiStyles.geminiThirdColor
 
         Image {
             anchors.centerIn: parent
@@ -38,7 +42,7 @@ SpinBox {
         height: parent.height
         implicitWidth: 40
         implicitHeight: 40
-        color: root.down.pressed ? GeminiStyles.geminiThirdColor : GeminiStyles.geminiSecondColor
+        color: root.down.pressed ? GeminiStyles.highlightColor : GeminiStyles.geminiThirdColor
 
         Image {
             anchors.centerIn: parent
