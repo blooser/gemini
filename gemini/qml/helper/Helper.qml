@@ -34,6 +34,7 @@ QtObject {
                                                   : -1
     }
 
+    // TODO: Add hours when it will be needed
     function extraHumanTimeFormat(ms) {
         if (ms < 60000) {
             return "s 's'"
