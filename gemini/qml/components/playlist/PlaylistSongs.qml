@@ -32,7 +32,7 @@ Item {
 
         anchors.fill: parent
 
-        interactive: false
+        boundsBehavior: Flickable.StopAtBounds
         clip: true
         spacing: GeminiStyles.tMargin
         model: root.allSongs ? songModel : songsInRelations

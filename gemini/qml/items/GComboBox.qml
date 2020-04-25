@@ -49,7 +49,7 @@ ComboBox {
 
         contentItem: ListView {
             clip: true
-            interactive: false
+            boundsBehavior: Flickable.StopAtBounds
             implicitHeight: contentHeight
             model: root.delegateModel
             currentIndex: root.highlightedIndex

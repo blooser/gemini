@@ -36,7 +36,7 @@ Item {
 
             implicitHeight: 400
 
-            interactive: false
+            boundsBehavior: Flickable.StopAtBounds
             model: playlistModel
 
             delegate: CurrentPlaylistSwitcherItem {

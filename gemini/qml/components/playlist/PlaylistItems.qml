@@ -46,7 +46,7 @@ Item {
             Layout.fillHeight: true
             Layout.rightMargin: GeminiStyles.tMargin
 
-            interactive: false
+            boundsBehavior: Flickable.StopAtBounds
             clip: true
             model: playlistModel
 

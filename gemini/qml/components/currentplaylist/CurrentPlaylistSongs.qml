@@ -16,7 +16,7 @@ Item {
 
         anchors.fill: parent
 
-        interactive: false
+        boundsBehavior: Flickable.StopAtBounds
         model: songsInRelations
 
         delegate: CurrentPlaylistSong {

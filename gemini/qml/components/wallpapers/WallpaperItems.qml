@@ -11,7 +11,7 @@ GridView {
 
     property var selectedWallpapers: []
 
-    interactive: false
+    boundsBehavior: Flickable.StopAtBounds
     model: wallpaperModel
 
     cellWidth: 180; cellHeight: 180

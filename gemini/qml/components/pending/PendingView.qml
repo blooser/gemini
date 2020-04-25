@@ -14,7 +14,7 @@ Item {
     ListView {
         id: pendingView
 
-        interactive: false
+        boundsBehavior: Flickable.StopAtBounds
         clip: true
         anchors {
             fill: parent

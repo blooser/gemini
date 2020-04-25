@@ -1,4 +1,5 @@
 import QtQuick 2.14
+import QtQuick.Controls 2.14
 import QtQuick.Layouts 1.12
 
 import com.gemini.tools 0.1
@@ -45,8 +46,8 @@ Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
 
-            interactive: false
             clip: true
+            boundsBehavior: Flickable.StopAtBounds
 
             function selectAll() {
                 for (let index=0; index<songs.count; ++index) {
@@ -88,6 +89,8 @@ Item {
                     }
                 }
             }
+
+            ScrollBar.vertical: ScrollBar { }
         }
     }
 }
