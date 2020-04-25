@@ -6,20 +6,15 @@ import com.gemini.styles 0.1
 SpinBox {
     id: root
 
-    property var display: function(value) {
-        return root.textFromValue(value, root.locale)
-    }
-
     contentItem: TextInput {
         z: 2
         font: root.font
-        text: display(root.value)
+        text: root.textFromValue(root.value, root.locale)
         color: GeminiStyles.geminiTextBaseColor
         horizontalAlignment: Qt.AlignHCenter
         verticalAlignment: Qt.AlignVCenter
         readOnly: !root.editable
         validator: root.validator
-        inputMethodHints: Qt.ImhFormattedNumbersOnly
     }
 
     up.indicator: Rectangle {
