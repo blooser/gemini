@@ -21,6 +21,10 @@ GPage {
             dataController.insertData(Helper.toList(files), Enums.Data.Wallpapers)
         })
 
+        onChangeInterval: objectController.openDialog(Enums.Dialog.WallpaperIntervalDialog, {}, function(interval) {
+            sessionController.wallpaperInterval = interval
+        })
+
         onRemoveSelectedWallpapers: objectController.openDialog(Enums.Dialog.ConfirmDialog, {"text": qsTr("Are you sure you want to delete %1 wallpapers?").arg(selectedWallpapers.length)}, function(){
             dataController.removeData(selectedWallpapers, Enums.Data.Wallpapers)
             sessionController.clearSelection() // NOTE: This will take effects in WallpaperItems

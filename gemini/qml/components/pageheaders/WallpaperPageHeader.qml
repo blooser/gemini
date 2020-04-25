@@ -10,6 +10,7 @@ Items.GToolBar {
     id: root
 
     signal addWallpapers()
+    signal changeInterval()
     signal removeSelectedWallpapers()
 
     property var selectedWallpapers: []
@@ -19,6 +20,12 @@ Items.GToolBar {
             text: qsTr("Add wallpapers")
 
             onClicked: root.addWallpapers()
+        }
+
+        Items.GToolButton {
+            text: qsTr("Interval")
+
+            onClicked: root.changeInterval()
         }
 
         Items.GToolButton {

@@ -26,5 +26,6 @@
         <file alias="arrowRight">svg/arrow-right.svg</file>
         <file alias="burn">svg/burn.svg</file>
         <file alias="time">svg/time.svg</file>
+        <file alias="minus">svg/minus.svg</file>
     </qresource>
 </RCC>
