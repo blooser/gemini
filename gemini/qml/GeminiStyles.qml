@@ -93,4 +93,6 @@ QtObject {
 
     readonly property int controlImplicitWidth: 200
     readonly property int controlImplicitHeight: 40
+
+    readonly property int wallpaperToolButtonIntervalFontSize: 10
 }

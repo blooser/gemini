@@ -2,6 +2,8 @@ import QtQuick 2.14
 import QtQuick.Layouts 1.12
 
 import com.gemini.styles 0.1
+import com.gemini.common 0.1
+import com.gemini.helper 0.1
 
 import "../../items" as Items
 import ".." as Components
@@ -26,6 +28,19 @@ Items.GToolBar {
             text: qsTr("Interval")
 
             onClicked: root.changeInterval()
+
+            Items.GText {
+                anchors {
+                    bottom: parent.bottom
+                    bottomMargin: GeminiStyles.separatorWidth
+                    left: parent.left
+                    right: parent.right
+                }
+
+                font.pixelSize: GeminiStyles.wallpaperToolButtonIntervalFontSize
+
+                text: Utility.formatTime(sessionController.wallpaperInterval, Helper.extraHumanTimeFormat(sessionController.wallpaperInterval))
+            }
         }
 
         Items.GToolButton {
