@@ -89,7 +89,7 @@ Window {
         property var stack: []
 
         function create(url, properties, callback) {
-            var component = Qt.createComponent(url)
+            let component = Qt.createComponent(url)
 
             if (component.status === Component.Error) {
                 console.warn("Error while creating object", component.errorString())
@@ -100,7 +100,7 @@ Window {
                 properties["callback"] = callback
             }
 
-            var object = component.createObject(root, properties)
+            let object = component.createObject(root, properties)
             console.log("Open", object)
             stack.push(object)
             object.open()

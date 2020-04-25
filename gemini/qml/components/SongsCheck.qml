@@ -49,8 +49,8 @@ Item {
             clip: true
 
             function selectAll() {
-                for (var index=0; index<songs.count; ++index) {
-                    var item = itemAtIndex(index)
+                for (let index=0; index<songs.count; ++index) {
+                    let item = itemAtIndex(index)
 
                     if (item.enabled && !item.checked && item.visible) {
                         item.toggle()

@@ -10,7 +10,7 @@ QtObject {
     }
 
     function toList(items) {
-        var stringList = []
+        let stringList = []
         for (const item of items) {
             stringList.push(item)
         }
@@ -19,7 +19,7 @@ QtObject {
     }
 
     function createRelation(playlist, songs) {
-        var relation = []
+        let relation = []
 
         for (const song of songs) {
             relation.push({"playlist": playlist, "song": song})
