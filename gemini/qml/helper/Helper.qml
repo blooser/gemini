@@ -34,7 +34,7 @@ QtObject {
                                                   : -1
     }
 
-    function extraHumanTime(ms) {
+    function extraHumanTimeFormat(ms) {
         if (ms < 60000) {
             return "s 's'"
         } else if (ms % 60000 === 0) {
@@ -42,5 +42,25 @@ QtObject {
         } else {
             return "m 'm' s 's'"
         }
+    }
+
+    function detectExtraHumanTimeFormat(string) {
+        let match =  /^([0-9]?[0-9] m)? ?([0-9]?[0-9] s)?/.exec(string)
+
+        if (match.length === 0) {
+            return ""
+        }
+
+        match = match[0]
+
+        if (match.includes("s") && !match.includes("m")) {
+            return "s 's'"
+        } else if (match.includes("m") && match.includes("s")) {
+            return "m 'm' s 's'"
+        } else if (match.includes("m") && !match.includes("s")) {
+            return "m 'm'"
+        }
+
+        return ""
     }
 }
