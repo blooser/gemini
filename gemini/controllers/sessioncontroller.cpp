@@ -53,6 +53,7 @@ void SessionController::save() {
     settings.setValue("audioVolume", m_audioVolume);
     settings.setValue("currentPageIndex", m_currentPageIndex);
     settings.setValue("unfinishedPending", m_pending);
+    settings.setValue("wallpaperInterval", m_wallpaperInterval);
     settings.endGroup();
 }
 
@@ -67,6 +68,7 @@ void SessionController::defaults() {
     m_audioVolume = 50;
     m_unfinishedPending = false;
     m_currentPageIndex = 0;
+    m_wallpaperInterval = 10000;
 }
 
 void SessionController::load() {
@@ -80,6 +82,7 @@ void SessionController::load() {
     setAudioVolume(settings.value("audioVolume").toInt());
     setCurrentPageIndex(settings.value("currentPageIndex").toInt());
     setUnfinishedPending(settings.value("unfinishedPending").toBool());
+    setWallpaperInterval(settings.value("wallpaperInterval").toInt());
     settings.endGroup();
 }
 
@@ -144,6 +147,10 @@ int SessionController::currentPageIndex() const {
     return m_currentPageIndex;
 }
 
+int SessionController::wallpaperInterval() const {
+    return m_wallpaperInterval;
+}
+
 void SessionController::setCleanScreen(const bool cleanScreen) {
     if (m_cleanScreen == cleanScreen) {
         return;
@@ -205,6 +212,15 @@ void SessionController::setCurrentSong(const data::Song &song) {
 
     m_currentSong = song;
     emit currentSongChanged(m_currentSong);
+}
+
+void SessionController::setWallpaperInterval(const int wallpaperInterval) {
+    if (m_wallpaperInterval == wallpaperInterval) {
+        return;
+    }
+
+    m_wallpaperInterval = wallpaperInterval;
+    emit wallpaperIntervalChanged(m_wallpaperInterval);
 }
 
 void SessionController::setCurrentWallpaper(const QUrl &url) {

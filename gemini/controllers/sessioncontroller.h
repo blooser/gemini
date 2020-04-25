@@ -20,6 +20,8 @@ class SessionController : public QObject {
                WRITE setCleanScreen NOTIFY cleanScreenChanged)
     Q_PROPERTY(bool audioMuted READ audioMuted
                WRITE setAudioMuted NOTIFY audioMutedChanged)
+    Q_PROPERTY(int wallpaperInterval READ wallpaperInterval
+               WRITE setWallpaperInterval NOTIFY wallpaperIntervalChanged)
     Q_PROPERTY(bool pending READ pending
                WRITE setPending NOTIFY pendingChanged)
     Q_PROPERTY(bool unfinishedPeding READ unfinishedPending
@@ -54,10 +56,12 @@ public:
     QUrl currentWallpaper() const;
     int audioVolume() const;
     int currentPageIndex() const;
+    int wallpaperInterval() const;
 
 public slots:
     void setCleanScreen(const bool cleanScreen);
     void setAudioMuted(const bool audioMuted);
+    void setWallpaperInterval(const int wallpaperInterval);
     void setPending(const bool pending);
     void setUnfinishedPending(const bool unfiniedPending);
     void setPlayback(const Playlist::Playback playback);
@@ -71,6 +75,7 @@ signals:
     void cleanScreenChanged(const bool cinemaMode);
     void audioMutedChanged(const bool audioMuted);
     void audioVolumeChanged(const int audioVolume);
+    void wallpaperIntervalChanged(const int wallpaperInterval);
     void pendingChanged(const bool pending);
     void unfinishedPendingChanged(const bool unfinishedPending);
     void playbackChanged(const Playlist::Playback playback);
@@ -107,6 +112,7 @@ private:
     const QString m_sessionLocation;
     int m_currentPageIndex;
     int m_audioVolume;
+    int m_wallpaperInterval;
     bool m_cleanScreen;
     bool m_audioMuted;
     bool m_pending;
