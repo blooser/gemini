@@ -14,7 +14,7 @@ GDialog {
 
     headerText: qsTr("Wallpaper Interval")
     dialog: Enums.Dialog.WallpaperIntervalDialog
-    standardButtons: Dialog.Cancel | Dialog.Ok
+    standardButtons: Dialog.Cancel | Dialog.Save
 
     implicitWidth: 350
 
@@ -29,7 +29,7 @@ GDialog {
             return Utility.formatTime(value * 1000, Helper.extraHumanTimeFormat(value * 1000))
         }
 
-        valueFromText: function(text, locale) {
+        valueFromText: function (text, locale) {
             return Utility.msFromString(text,  Helper.detectExtraHumanTimeFormat(text))/1000
         }
 
