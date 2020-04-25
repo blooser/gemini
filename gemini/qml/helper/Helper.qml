@@ -33,4 +33,14 @@ QtObject {
                               : index + 1 < count ? index + 1
                                                   : -1
     }
+
+    function extraHumanTime(ms) {
+        if (ms < 60000) {
+            return "s 's'"
+        } else if (ms % 60000 === 0) {
+            return "m 'm'"
+        } else {
+            return "m 'm' s 's'"
+        }
+    }
 }
