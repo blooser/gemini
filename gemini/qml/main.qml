@@ -27,7 +27,7 @@ Window {
         id: picker
         model: wallpaperModel
         roleName: "url"
-        interval: 10000
+        interval: sessionController.wallpaperInterval
         running: (wallpaperModel.size > GeminiStyles.empty)
 
         onPicked: sessionController.currentWallpaper = data
