@@ -21,6 +21,7 @@ public:
     static bool isPendable(Enums::Data data);
 
     Q_INVOKABLE static QString formatTime(const int ms, const QString &format);
+    Q_INVOKABLE static int msFromString(const QString &string, const QString &format);
     Q_INVOKABLE static QString fileSize(const QUrl &url);
 
 private:

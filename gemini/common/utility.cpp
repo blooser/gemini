@@ -19,6 +19,19 @@ QString Utility::formatTime(const int ms, const QString &format) {
                      : QDateTime::fromMSecsSinceEpoch(ms)).toString(format);
 }
 
+int Utility::msFromString(const QString &string, const QString &format) {
+    auto time = QTime::fromString(string, format);
+
+    if (not time.isValid()) {
+        return 0;
+    }
+
+    return time.hour() * 60 * 60 * 1000 +
+           time.minute() * 60 * 1000 +
+           time.second() * 1000;
+
+}
+
 QString Utility::fileSize(const QUrl &url) {
     QLocale locale;
     return locale.formattedDataSize(QFileInfo(url.path()).size());
