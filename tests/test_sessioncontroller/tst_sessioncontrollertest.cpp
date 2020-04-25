@@ -65,6 +65,7 @@ void SessionControllerTest::testSessionControllerLoadsWithDefaultsSettings() {
         QCOMPARE(sessionContorller.currentWallpaper(), QUrl());
         QCOMPARE(sessionContorller.audioVolume(), 50);
         QCOMPARE(sessionContorller.currentPageIndex(), 0);
+        QCOMPARE(sessionContorller.wallpaperInterval(), 10000);
     }
 }
 
@@ -81,6 +82,7 @@ void SessionControllerTest::testSessionControllerSavesAndLoadsSettings() {
         sessionController.setCurrentSong(song);
         sessionController.setAudioVolume(25);
         sessionController.setCurrentPageIndex(2);
+        sessionController.setWallpaperInterval(15000);
     }
 
     {
@@ -92,6 +94,7 @@ void SessionControllerTest::testSessionControllerSavesAndLoadsSettings() {
         QCOMPARE(sessionController.currentSong(), song);
         QCOMPARE(sessionController.audioVolume(), 25);
         QCOMPARE(sessionController.currentPageIndex(), 2);
+        QCOMPARE(sessionController.wallpaperInterval(), 15000);
     }
 }
 
