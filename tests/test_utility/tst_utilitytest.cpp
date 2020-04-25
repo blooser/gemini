@@ -13,6 +13,7 @@ public:
 private slots:
     void testUtilityConvertsEnumToString();
     void testUtilityFormatsMsec();
+    void testUtilityReadMsFromString();
     void testUtilityFormatFileSizeToHumanReadable();
 };
 
@@ -32,6 +33,13 @@ void UtilityTest::testUtilityConvertsEnumToString() {
 void UtilityTest::testUtilityFormatsMsec() {
     const int msec = 65000;
     QCOMPARE(Utility::formatTime(msec, "mm:ss"), QStringLiteral("01:05"));
+}
+
+void UtilityTest::testUtilityReadMsFromString() {
+    const QString string = "1 m 24 s";
+
+    const int ms = Utility::msFromString(string, "m 'm' s 's'");
+    QCOMPARE(ms, 1 * 60 * 1000 + 24 * 1000);
 }
 
 void UtilityTest::testUtilityFormatFileSizeToHumanReadable() {
