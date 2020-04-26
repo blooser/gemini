@@ -90,7 +90,7 @@ Item {
                 }
             }
 
-            ScrollBar.vertical: ScrollBar { }
+            ScrollBar.vertical: Items.GScrollBar { }
         }
     }
 }

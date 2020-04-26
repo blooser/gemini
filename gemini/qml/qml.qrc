@@ -93,5 +93,6 @@
         <file>components/playlist/PlaylistSongsView.qml</file>
         <file>dialogs/WallpaperIntervalDialog.qml</file>
         <file>items/GSpinBox.qml</file>
+        <file>items/GScrollBar.qml</file>
     </qresource>
 </RCC>
