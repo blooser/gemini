@@ -3,6 +3,7 @@ import QtQuick.Window 2.14
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import QtQuick.Dialogs 1.2
+import QtQml 2.14
 
 import com.gemini.styles 0.1
 import com.gemini.helper 0.1
@@ -20,6 +21,7 @@ GWallpaperPage {
         target: sessionController
         property: "cleanScreen"
         value: (playlistModel.size === GeminiStyles.empty)
+        restoreMode: Binding.RestoreBindingOrValue
     }
 
     Binding {
@@ -27,6 +29,7 @@ GWallpaperPage {
         property: "pending"
         value: (pendingModel.size > GeminiStyles.empty)
         when: !sessionController.unfinishedPeding
+        restoreMode: Binding.RestoreBindingOrValue
     }
 
     Player {
