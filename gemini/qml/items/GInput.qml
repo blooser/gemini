@@ -1,4 +1,4 @@
-import QtQuick 2.14
+﻿import QtQuick 2.14
 import QtQuick.Controls 2.12
 
 import com.gemini.styles 0.1
@@ -18,8 +18,17 @@ TextField {
         color: GeminiStyles.geminiBaseColor
         radius: GeminiStyles.tMargin
         border {
-            width: GeminiStyles.borderBoldWidth
+            width: GeminiStyles.borderWidth
             color: GeminiStyles.geminiSecondColor
+        }
+
+        states: State {
+            when: root.activeFocus
+            PropertyChanges { target: rectBackground; border.color: GeminiStyles.highlightColor }
+        }
+
+        transitions: Transition {
+            ColorAnimation { duration: GeminiStyles.quickAnimation }
         }
     }
 }
