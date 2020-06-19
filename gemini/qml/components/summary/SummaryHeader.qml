@@ -17,6 +17,14 @@ Item {
         anchors.fill: parent
         spacing: GeminiStyles.nMargin
 
+        Image {
+            Layout.preferredWidth: 164
+            Layout.preferredHeight: 164
+
+            source: "qrc:/icons/gemini"
+            fillMode: Image.PreserveAspectFit
+        }
+
         Items.GText {
             Layout.fillWidth: true
             text: Qt.application.name

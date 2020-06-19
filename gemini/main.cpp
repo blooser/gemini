@@ -1,10 +1,4 @@
-#include <QApplication>
-#include <QQmlApplicationEngine>
-#include <QQmlContext>
-#include <QMetaObject>
-#include <QFontDatabase>
-
-#include "controllers/objectcontroller.h"
+﻿#include "controllers/objectcontroller.h"
 #include "controllers/sessioncontroller.h"
 #include "controllers/datacontroller.h"
 
@@ -17,6 +11,13 @@
 #include "common/enums.h"
 #include "common/utility.h"
 
+#include <QApplication>
+#include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include <QMetaObject>
+#include <QFontDatabase>
+#include <QIcon>
+
 int main(int argc, char *argv[]) {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
@@ -26,6 +27,7 @@ int main(int argc, char *argv[]) {
     app.setApplicationVersion(ProjectVersion);
     app.setOrganizationName(OrganizationName);
     app.setOrganizationDomain(OrganizationDomain);
+    app.setWindowIcon(QIcon(":/icons/gemini"));
 
     int fontId = QFontDatabase::addApplicationFont(":/fonts/sen");
     app.setFont(QFont(QFontDatabase::applicationFontFamilies(fontId).at(0)));

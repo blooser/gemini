@@ -27,5 +27,6 @@
         <file alias="burn">svg/burn.svg</file>
         <file alias="time">svg/time.svg</file>
         <file alias="minus">svg/minus.svg</file>
+        <file alias="gemini">svg/gemini.svg</file>
     </qresource>
 </RCC>
