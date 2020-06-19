@@ -1,4 +1,4 @@
-#ifndef PATHS_H
+﻿#ifndef PATHS_H
 #define PATHS_H
 
 #include <QStringList>
@@ -16,8 +16,9 @@ enum class Path {
 
 const QStringList AUDIO_SUFFIXES {
     QStringLiteral("mp3"),
-    QStringLiteral("wav")
-    // TODO: Add more suffixes
+    QStringLiteral("wav"),
+    QStringLiteral("flac"),
+    QStringLiteral("m4a")
 };
 
 const QStringList IMAGE_SUFFIXES {

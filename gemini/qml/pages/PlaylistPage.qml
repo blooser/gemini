@@ -1,4 +1,4 @@
-import QtQuick 2.14
+﻿import QtQuick 2.14
 
 import Qt.labs.platform 1.1
 
@@ -22,7 +22,7 @@ GPage {
         onAddSongs: {
             if (playlistView.allSongs || songModel.size === GeminiStyles.empty) {
                 objectController.openDialog(Enums.Dialog.FileOpenDialog, {"title": qsTr("Add new songs"),
-                                                                          "nameFilters": ["Music (*.mp3 *.wav)"],
+                                                                          "nameFilters": ["Music (*.mp3 *.wav *.flac *.m4a)"],
                                                                           "folder": StandardPaths.writableLocation(StandardPaths.MusicLocation)}, function(files) {
                     dataController.insertData(Helper.toList(files), Enums.Data.Songs)
                 })
