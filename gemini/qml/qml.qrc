@@ -94,5 +94,6 @@
         <file>dialogs/WallpaperIntervalDialog.qml</file>
         <file>items/GSpinBox.qml</file>
         <file>items/GScrollBar.qml</file>
+        <file>components/summary/SummaryItems.qml</file>
     </qresource>
 </RCC>
