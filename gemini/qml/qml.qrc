@@ -97,5 +97,8 @@
         <file>components/summary/SummaryItems.qml</file>
         <file>components/summary/SummaryHeader.qml</file>
         <file>components/summary/SummaryHelpButton.qml</file>
+        <file>dialogs/HelpDialog.qml</file>
+        <file>components/summary/SummaryShortcuts.qml</file>
+        <file>components/summary/SummaryShortcutModel.qml</file>
     </qresource>
 </RCC>

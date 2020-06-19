@@ -2,6 +2,7 @@
 import QtGraphicalEffects 1.0
 
 import com.gemini.styles 0.1
+import com.gemini.enums 0.1
 
 import "../../items" as Items
 
@@ -9,7 +10,7 @@ Items.GImageButton {
     id: root
 
     iconSource: "qrc:/icons/gate"
-    onClicked: console.log("ok")
+    onClicked: objectController.openDialog(Enums.Dialog.HelpDialog, {}, null)
 
     RectangularGlow {
         anchors.fill: root

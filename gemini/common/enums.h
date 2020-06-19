@@ -1,4 +1,4 @@
-#ifndef ENUMS_H
+﻿#ifndef ENUMS_H
 #define ENUMS_H
 
 #include <QObject>
@@ -29,7 +29,8 @@ namespace Enums {
         WallpaperDialog,
         SongsDialog,
         SwitchDialog,
-        WallpaperIntervalDialog
+        WallpaperIntervalDialog,
+        HelpDialog
     };
     Q_ENUM_NS(Dialog)
     inline uint qHash(Dialog key, uint seed) { return ::qHash(static_cast<int>(key), seed); }
