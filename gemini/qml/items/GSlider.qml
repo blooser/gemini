@@ -1,4 +1,4 @@
-import QtQuick 2.14
+﻿import QtQuick 2.14
 import QtQuick.Controls 2.12
 
 import com.gemini.styles 0.1
@@ -40,6 +40,10 @@ Slider {
 
         color: root.pressed ? GeminiStyles.highlightColor : GeminiStyles.geminiThirdColor
         border.color: GeminiStyles.geminiSecondColor
+
+        Behavior on color {
+            ColorAnimation { duration: GeminiStyles.quickAnimation }
+        }
 
         Image {
             id: icon
