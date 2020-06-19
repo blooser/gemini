@@ -1,4 +1,4 @@
-pragma Singleton
+﻿pragma Singleton
 
 import QtQuick 2.14
 
@@ -29,6 +29,8 @@ QtObject {
     readonly property int hFontPixelSize: 24
 
     readonly property int summaryNumberFontPixelSize: 72
+
+    readonly property int summaryHeaderPixelSize: 76
 
     readonly property string numberFontFamily: "Gurmukhi"
 

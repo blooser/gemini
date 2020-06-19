@@ -95,5 +95,7 @@
         <file>items/GSpinBox.qml</file>
         <file>items/GScrollBar.qml</file>
         <file>components/summary/SummaryItems.qml</file>
+        <file>components/summary/SummaryHeader.qml</file>
+        <file>components/summary/SummaryHelpButton.qml</file>
     </qresource>
 </RCC>

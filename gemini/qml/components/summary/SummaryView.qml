@@ -13,10 +13,20 @@ Item {
         id: mainLayout
 
         anchors.fill: parent
-        spacing: GeminiStyles.bMargin
+        spacing: GeminiStyles.tMargin
+
+        SummaryHeader {
+            Layout.alignment: Qt.AlignHCenter
+        }
 
         SummaryItems {
             Layout.alignment: Qt.AlignHCenter
+        }
+
+        SummaryHelpButton {
+            Layout.alignment: Qt.AlignHCenter
+            Layout.preferredWidth: 72
+            Layout.preferredHeight: 72
         }
     }
 }
