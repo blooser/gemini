@@ -2,6 +2,8 @@
 import QtQuick.Controls 2.12
 import QtQuick.Window 2.14
 
+import Qt.labs.settings 1.1
+
 import com.gemini.enums 0.1
 import com.gemini.tools 0.1
 import com.gemini.helper 0.1
@@ -13,11 +15,18 @@ import "items" as Items
 Window {
     id: root
 
-    title: "Gemini"
+    title: Qt.application.name
     visible: true
 
     width: GeminiStyles.mainWindowWidth
     height: GeminiStyles.mainWindowHeight
+
+    Settings {
+        property alias x: root.x
+        property alias y: root.y
+        property alias width: root.width
+        property alias height: root.height
+    }
 
     Components.Shortcuts {
         // Comfort
