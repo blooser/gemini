@@ -29,3 +29,7 @@ enable_testing ()
 
 add_subdirectory (gemini)
 add_subdirectory (tests)
+
+install (FILES gemini/resources/svg/gemini.svg DESTINATION share/icons/hicolor/scalable/apps)
+install (FILES com.gemini.desktop DESTINATION share/applications)
+install (TARGETS gemini ${INSTALL_TARGETS_DEFAULT_ARGS})

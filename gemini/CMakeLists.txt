@@ -1,4 +1,4 @@
-find_package (Qt5 ${QT_MIN_VERSION} COMPONENTS Core Gui Widgets Quick Qml Svg Sql REQUIRED)
+﻿find_package (Qt5 ${QT_MIN_VERSION} COMPONENTS Core Gui Widgets Quick Qml Svg Sql REQUIRED)
 find_package (Qt5QuickCompiler)
 
 set (CMAKE_AUTOMOC ON)
@@ -166,5 +166,3 @@ add_executable (gemini main.cpp ${COMMON_FILES} ${CONTROLLERS_FILES} ${DATA_FILE
 qt5_use_modules (gemini Core Gui Widgets Quick Qml Svg Sql)
 
 target_link_libraries (gemini ${LIBVLC_LIBRARY} ${LIBVLCCORE_LIBRARY} ${TAGLIB_LIBRARIES})
-
-install (TARGETS gemini ${INSTALL_TARGETS_DEFAULT_ARGS})
