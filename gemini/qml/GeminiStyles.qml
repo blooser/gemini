@@ -72,6 +72,9 @@ QtObject {
     // Capacity
     readonly property int empty: 0
 
+    // Special
+    readonly property int invalid: -1
+
     // Animations
     readonly property int quickAnimation: 200
     readonly property int animation: 500

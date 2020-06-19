@@ -1,4 +1,4 @@
-import QtQuick 2.14
+﻿import QtQuick 2.14
 
 import com.gemini.styles 0.1
 import com.gemini.tools 0.1
@@ -12,17 +12,11 @@ CircleProgressBar {
     implicitWidth: GeminiStyles.audioProgressBarImplicitWidth
     implicitHeight: GeminiStyles.audioProgressBarImplicitHeight
 
-    Items.GText {
+    AudioTime {
         anchors.centerIn: parent
 
-        text: Utility.formatTime(value, "mm:ss")
-        color: GeminiStyles.highlightColor
-
-        font {
-            pixelSize: 24
-            bold: true
-            family: GeminiStyles.numberFontFamily
-        }
+        time: value
+        totalTime: to
     }
 
     Items.GToolTip {

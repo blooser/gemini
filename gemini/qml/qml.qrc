@@ -100,5 +100,6 @@
         <file>dialogs/HelpDialog.qml</file>
         <file>components/summary/SummaryShortcuts.qml</file>
         <file>components/summary/SummaryShortcutModel.qml</file>
+        <file>components/audio/AudioTime.qml</file>
     </qresource>
 </RCC>
