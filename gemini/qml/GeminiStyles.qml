@@ -90,6 +90,9 @@ QtObject {
     readonly property int wallpapersViewCellWidth: 100
     readonly property int wallpapersViewCellHeight: 100
 
+    readonly property int wallpaperCloseButtonWidth: 72
+    readonly property int wallpaperCloseButtonHeight: 72
+
     readonly property int audioProgressBarImplicitWidth: 250
     readonly property int audioProgressBarImplicitHeight: 250
 

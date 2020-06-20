@@ -1,4 +1,4 @@
-import QtQuick 2.14
+﻿import QtQuick 2.14
 
 import com.gemini.styles 0.1
 import com.gemini.common 0.1
@@ -17,6 +17,15 @@ Image {
             right: parent.right
             bottom: parent.bottom
             bottomMargin: GeminiStyles.nMargin
+        }
+    }
+
+    WallpaperCloseButton {
+        anchors {
+            right: root.right
+            rightMargin: -(width/2)
+            top: root.top
+            topMargin: -(height/2)
         }
     }
 }

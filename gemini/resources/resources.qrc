@@ -28,5 +28,6 @@
         <file alias="time">svg/time.svg</file>
         <file alias="minus">svg/minus.svg</file>
         <file alias="gemini">svg/gemini.svg</file>
+        <file alias="close">svg/close.svg</file>
     </qresource>
 </RCC>
