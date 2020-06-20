@@ -1,4 +1,4 @@
-import QtQuick 2.14
+﻿import QtQuick 2.14
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
@@ -15,6 +15,8 @@ GDialog {
 
     dialog: Enums.Dialog.SwitchDialog
     headerText: qsTr("Switch page")
+
+    closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
     ColumnLayout {
         id: mainLayout
