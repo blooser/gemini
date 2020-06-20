@@ -13,13 +13,17 @@ This software is based on :
 
 To build this software, follow the instructions
 
-### Clone the repository
+### Repository
+
+Clone the repository
 
 ```bash
 git clone https://github.com/blooser/gemini && cd gemini
 ```
 
 ### Build
+
+Prepare the build
 
 ```bash
 mkdir build && cd build
@@ -29,8 +33,18 @@ make
 
 ### Unit tests
 
+Make sure everything works
+
 ```bash
 make test
+```
+
+### Install
+
+Install the gemini
+
+```bash
+make install
 ```
 
 ## License
