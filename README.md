@@ -1,10 +1,14 @@
-# Gemini
+<div align="center">
+	<img src="https://raw.githubusercontent.com/blooser/gemini/3fc4b6911cc3e403a2063cb23aeb864a65401c0b/gemini/resources/svg/gemini-with-text.svg" width="350" height="350">
+</div>
 
 Gemini is an audio player with wallpaper changer
 
+<i> Gemini is currently in the early development stage, it might have unfinished features or bugs</i>
+
 ## Dependency
 
-This software is based on :
+This software is based on 
  - [Qt](https://www.qt.io/)
  - [TagLib](https://taglib.org/)
  - [LibVlc](https://wiki.videolan.org/LibVLC)
@@ -32,8 +36,7 @@ make
 ```
 
 ### Unit tests
-
-Make sure everything works
+Run the unit tests
 
 ```bash
 make test
