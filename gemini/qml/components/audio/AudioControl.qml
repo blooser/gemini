@@ -28,7 +28,7 @@ Item {
     Connections {
         target: sessionController
 
-        onSwitchAudioMute: audioMuteButton.checked = !audioMuteButton.checked
+        function onSwitchAudioMute() { audioMuteButton.checked = !audioMuteButton.checked }
     }
 
     GridLayout {

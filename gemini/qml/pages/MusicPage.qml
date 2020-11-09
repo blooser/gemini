@@ -62,15 +62,15 @@ GWallpaperPage {
     Connections {
         target: sessionController
 
-        onNextSong: geminiPlaylist.next()
-        onPreviousSong: geminiPlaylist.previous()
-        onSwitchPlayback: geminiPlaylist.switchPlayback()
-        onSelectPlaylist: geminiPlaylist.selectPlaylist(id, selection)
-        onSelectSong: geminiPlaylist.selectSong(id, selection)
+        function onNextSong()  { geminiPlaylist.next() }
+        function onPreviousSong() { geminiPlaylist.previous() }
+        function onSwitchPlayback() { geminiPlaylist.switchPlayback() }
+        function onSelectPlaylist() { geminiPlaylist.selectPlaylist(id, selection) }
+        function onSelectSong() { geminiPlaylist.selectSong(id, selection) }
 
-        onTogglePlayer: player.toggle()
+        function onTogglePlayer() { player.toggle() }
 
-        onPendingChanged: {
+        function onPendingChanged(pending) {
             if (pending) {
                 objectController.openDialog(Enums.Dialog.PendingDialog, {}, null)
             }

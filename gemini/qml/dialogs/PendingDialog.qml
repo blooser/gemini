@@ -22,7 +22,7 @@ GDialog {
     Connections {
         target: sessionController
 
-        onPendingChanged: {
+        function onPendingChanged (pending) {
             if (!pending) {
                 close()
             }

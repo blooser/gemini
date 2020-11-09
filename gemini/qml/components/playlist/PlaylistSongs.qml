@@ -23,8 +23,8 @@ Item {
     Connections {
         target: sessionController
 
-        onCurrentPlaylistChanged: selectedSongs = []
-        onClearSelection: selectedSongs = []
+        function onCurrentPlaylistChanged() { selectedSongs = [] }
+        function onClearSelection() { selectedSongs = [] }
     }
 
     ListView {

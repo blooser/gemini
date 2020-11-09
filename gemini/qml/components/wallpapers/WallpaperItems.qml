@@ -22,7 +22,7 @@ GridView {
     Connections {
         target: sessionController
 
-        onClearSelection: selectedWallpapers = []
+        function onClearSelection() { selectedWallpapers = [] }
     }
 
     delegate: WallpaperItem {

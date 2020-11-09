@@ -45,9 +45,9 @@ Window {
     Connections {
         target: sessionController
 
-        onSwipeLeft: swipeView.decrementCurrentIndex()
-        onSwipeRight: swipeView.incrementCurrentIndex()
-        onSwipe: swipeView.setCurrentIndex(index)
+        function onSwipeLeft() { swipeView.decrementCurrentIndex() }
+        function onSwipeRight() { swipeView.incrementCurrentIndex() }
+        function onSwipe() { swipeView.setCurrentIndex(index) }
     }
 
     Binding {
@@ -88,8 +88,8 @@ Window {
     Connections {
         target: objectController
 
-        onOpen: objectCreator.create(url, properties, callback)
-        onClose: objectCreator.remove(dialog)
+        function onOpen() { objectCreator.create(url, properties, callback) }
+        function onClose() { objectCreator.remove(dialog) }
     }
 
     QtObject {
